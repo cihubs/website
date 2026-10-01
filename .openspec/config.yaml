@@ -1,0 +1,20 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Astro, TinaCMS, Tailwind CSS, TypeScript
+  CMS: TinaCMS for content management
+  Design System: @cihubs/design-system with CIHUBS blue palette (#203370)
+  Fonts: DM Serif Display, DM Sans, DM Mono
+  Build: Astro build system with Vite
+  Deployment: Static site hosting
+
+rules:
+  proposal:
+    - Include rollback plan
+    - Identify affected sections
+  specs:
+    - Use Given/When/Then format for scenarios
+  design:
+    - Include component diagrams for UI changes
+  tasks:
+    - Include acceptance criteria
