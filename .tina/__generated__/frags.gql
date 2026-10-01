@@ -1,0 +1,37 @@
+fragment BlogParts on Blog {
+  __typename
+  title
+  meta_title
+  description
+  date
+  image
+  author
+  categories {
+    __typename
+    category
+  }
+  tags {
+    __typename
+    tag
+  }
+  draft
+  body
+}
+
+fragment AuthorsParts on Authors {
+  __typename
+  title
+  description
+  image
+  draft
+}
+
+fragment PagesParts on Pages {
+  __typename
+  title
+  meta_title
+  description
+  image
+  draft
+  body
+}
