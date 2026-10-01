@@ -7,13 +7,12 @@
     })
     return str
   }
-  export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+  /** Internal type. DO NOT USE DIRECTLY. */
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+/** Internal type. DO NOT USE DIRECTLY. */
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -88,6 +87,8 @@ export type Query = {
   authorsConnection: AuthorsConnection;
   pages: Pages;
   pagesConnection: PagesConnection;
+  programs: Programs;
+  programsConnection: ProgramsConnection;
 };
 
 
@@ -156,10 +157,26 @@ export type QueryPagesConnectionArgs = {
   filter?: InputMaybe<PagesFilter>;
 };
 
+
+export type QueryProgramsArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryProgramsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ProgramsFilter>;
+};
+
 export type DocumentFilter = {
   blog?: InputMaybe<BlogFilter>;
   authors?: InputMaybe<AuthorsFilter>;
   pages?: InputMaybe<PagesFilter>;
+  programs?: InputMaybe<ProgramsFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -199,7 +216,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Blog | Authors | Pages | Folder;
+export type DocumentNode = Blog | Authors | Pages | Programs | Folder;
 
 export type BlogCategories = {
   __typename?: 'BlogCategories';
@@ -354,6 +371,67 @@ export type PagesConnection = Connection & {
   edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
 };
 
+export type ProgramsPhases = {
+  __typename?: 'ProgramsPhases';
+  title?: Maybe<Scalars['String']['output']>;
+  duration?: Maybe<Scalars['String']['output']>;
+  link?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type ProgramsComponents = {
+  __typename?: 'ProgramsComponents';
+  title?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['JSON']['output']>;
+  list?: Maybe<Scalars['String']['output']>;
+};
+
+export type Programs = Node & Document & {
+  __typename?: 'Programs';
+  title: Scalars['String']['output'];
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['JSON']['output']>;
+  phases?: Maybe<Array<Maybe<ProgramsPhases>>>;
+  components?: Maybe<Array<Maybe<ProgramsComponents>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ProgramsPhasesFilter = {
+  title?: InputMaybe<StringFilter>;
+  duration?: InputMaybe<StringFilter>;
+  link?: InputMaybe<StringFilter>;
+  content?: InputMaybe<RichTextFilter>;
+};
+
+export type ProgramsComponentsFilter = {
+  title?: InputMaybe<StringFilter>;
+  content?: InputMaybe<RichTextFilter>;
+  list?: InputMaybe<StringFilter>;
+};
+
+export type ProgramsFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
+  phases?: InputMaybe<ProgramsPhasesFilter>;
+  components?: InputMaybe<ProgramsComponentsFilter>;
+};
+
+export type ProgramsConnectionEdges = {
+  __typename?: 'ProgramsConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Programs>;
+};
+
+export type ProgramsConnection = Connection & {
+  __typename?: 'ProgramsConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<ProgramsConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -367,6 +445,8 @@ export type Mutation = {
   createAuthors: Authors;
   updatePages: Pages;
   createPages: Pages;
+  updatePrograms: Programs;
+  createPrograms: Programs;
 };
 
 
@@ -438,10 +518,23 @@ export type MutationCreatePagesArgs = {
   params: PagesMutation;
 };
 
+
+export type MutationUpdateProgramsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ProgramsMutation;
+};
+
+
+export type MutationCreateProgramsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ProgramsMutation;
+};
+
 export type DocumentUpdateMutation = {
   blog?: InputMaybe<BlogMutation>;
   authors?: InputMaybe<AuthorsMutation>;
   pages?: InputMaybe<PagesMutation>;
+  programs?: InputMaybe<ProgramsMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -449,6 +542,7 @@ export type DocumentMutation = {
   blog?: InputMaybe<BlogMutation>;
   authors?: InputMaybe<AuthorsMutation>;
   pages?: InputMaybe<PagesMutation>;
+  programs?: InputMaybe<ProgramsMutation>;
 };
 
 export type BlogCategoriesMutation = {
@@ -488,68 +582,194 @@ export type PagesMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type BlogPartsFragment = { __typename: 'Blog', title: string, meta_title?: string | null, description?: string | null, date?: string | null, image?: string | null, author?: string | null, draft?: boolean | null, body?: any | null, categories?: Array<{ __typename: 'BlogCategories', category?: string | null } | null> | null, tags?: Array<{ __typename: 'BlogTags', tag?: string | null } | null> | null };
+export type ProgramsPhasesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  duration?: InputMaybe<Scalars['String']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+};
 
-export type AuthorsPartsFragment = { __typename: 'Authors', title: string, description?: string | null, image?: string | null, draft?: boolean | null };
+export type ProgramsComponentsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  list?: InputMaybe<Scalars['String']['input']>;
+};
 
-export type PagesPartsFragment = { __typename: 'Pages', title: string, meta_title?: string | null, description?: string | null, image?: string | null, draft?: boolean | null, body?: any | null };
+export type ProgramsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  phases?: InputMaybe<Array<InputMaybe<ProgramsPhasesMutation>>>;
+  components?: InputMaybe<Array<InputMaybe<ProgramsComponentsMutation>>>;
+};
+
+export type StringFilter = {
+  startsWith?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<string | null | undefined> | null | undefined;
+};
+
+export type DatetimeFilter = {
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+  in?: Array<string | null | undefined> | null | undefined;
+};
+
+export type BlogCategoriesFilter = {
+  category?: StringFilter | null | undefined;
+};
+
+export type BlogTagsFilter = {
+  tag?: StringFilter | null | undefined;
+};
+
+export type BooleanFilter = {
+  eq?: boolean | null | undefined;
+  exists?: boolean | null | undefined;
+};
+
+export type RichTextFilter = {
+  startsWith?: string | null | undefined;
+  eq?: string | null | undefined;
+  exists?: boolean | null | undefined;
+};
+
+export type BlogFilter = {
+  title?: StringFilter | null | undefined;
+  meta_title?: StringFilter | null | undefined;
+  description?: StringFilter | null | undefined;
+  date?: DatetimeFilter | null | undefined;
+  image?: StringFilter | null | undefined;
+  author?: StringFilter | null | undefined;
+  categories?: BlogCategoriesFilter | null | undefined;
+  tags?: BlogTagsFilter | null | undefined;
+  draft?: BooleanFilter | null | undefined;
+  body?: RichTextFilter | null | undefined;
+};
+
+export type AuthorsFilter = {
+  title?: StringFilter | null | undefined;
+  description?: StringFilter | null | undefined;
+  image?: StringFilter | null | undefined;
+  draft?: BooleanFilter | null | undefined;
+};
+
+export type PagesFilter = {
+  title?: StringFilter | null | undefined;
+  meta_title?: StringFilter | null | undefined;
+  description?: StringFilter | null | undefined;
+  image?: StringFilter | null | undefined;
+  draft?: BooleanFilter | null | undefined;
+  body?: RichTextFilter | null | undefined;
+};
+
+export type ProgramsPhasesFilter = {
+  title?: StringFilter | null | undefined;
+  duration?: StringFilter | null | undefined;
+  link?: StringFilter | null | undefined;
+  content?: RichTextFilter | null | undefined;
+};
+
+export type ProgramsComponentsFilter = {
+  title?: StringFilter | null | undefined;
+  content?: RichTextFilter | null | undefined;
+  list?: StringFilter | null | undefined;
+};
+
+export type ProgramsFilter = {
+  title?: StringFilter | null | undefined;
+  subtitle?: StringFilter | null | undefined;
+  description?: RichTextFilter | null | undefined;
+  phases?: ProgramsPhasesFilter | null | undefined;
+  components?: ProgramsComponentsFilter | null | undefined;
+};
+
+export type BlogPartsFragment = { __typename: 'Blog', title: string, meta_title: string | null, description: string | null, date: string | null, image: string | null, author: string | null, draft: boolean | null, body: any, categories: Array<{ __typename: 'BlogCategories', category: string | null } | null> | null, tags: Array<{ __typename: 'BlogTags', tag: string | null } | null> | null };
+
+export type AuthorsPartsFragment = { __typename: 'Authors', title: string, description: string | null, image: string | null, draft: boolean | null };
+
+export type PagesPartsFragment = { __typename: 'Pages', title: string, meta_title: string | null, description: string | null, image: string | null, draft: boolean | null, body: any };
+
+export type ProgramsPartsFragment = { __typename: 'Programs', title: string, subtitle: string | null, description: any, phases: Array<{ __typename: 'ProgramsPhases', title: string | null, duration: string | null, link: string | null, content: any } | null> | null, components: Array<{ __typename: 'ProgramsComponents', title: string | null, content: any, list: string | null } | null> | null };
 
 export type BlogQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type BlogQuery = { __typename?: 'Query', blog: { __typename: 'Blog', id: string, title: string, meta_title?: string | null, description?: string | null, date?: string | null, image?: string | null, author?: string | null, draft?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, categories?: Array<{ __typename: 'BlogCategories', category?: string | null } | null> | null, tags?: Array<{ __typename: 'BlogTags', tag?: string | null } | null> | null } };
+export type BlogQuery = { blog: { __typename: 'Blog', id: string, title: string, meta_title: string | null, description: string | null, date: string | null, image: string | null, author: string | null, draft: boolean | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, categories: Array<{ __typename: 'BlogCategories', category: string | null } | null> | null, tags: Array<{ __typename: 'BlogTags', tag: string | null } | null> | null } };
 
 export type BlogConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<BlogFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: BlogFilter | null | undefined;
 }>;
 
 
-export type BlogConnectionQuery = { __typename?: 'Query', blogConnection: { __typename?: 'BlogConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BlogConnectionEdges', cursor: string, node?: { __typename: 'Blog', id: string, title: string, meta_title?: string | null, description?: string | null, date?: string | null, image?: string | null, author?: string | null, draft?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, categories?: Array<{ __typename: 'BlogCategories', category?: string | null } | null> | null, tags?: Array<{ __typename: 'BlogTags', tag?: string | null } | null> | null } | null } | null> | null } };
+export type BlogConnectionQuery = { blogConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Blog', id: string, title: string, meta_title: string | null, description: string | null, date: string | null, image: string | null, author: string | null, draft: boolean | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, categories: Array<{ __typename: 'BlogCategories', category: string | null } | null> | null, tags: Array<{ __typename: 'BlogTags', tag: string | null } | null> | null } | null } | null> | null } };
 
 export type AuthorsQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type AuthorsQuery = { __typename?: 'Query', authors: { __typename: 'Authors', id: string, title: string, description?: string | null, image?: string | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type AuthorsQuery = { authors: { __typename: 'Authors', id: string, title: string, description: string | null, image: string | null, draft: boolean | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type AuthorsConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<AuthorsFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: AuthorsFilter | null | undefined;
 }>;
 
 
-export type AuthorsConnectionQuery = { __typename?: 'Query', authorsConnection: { __typename?: 'AuthorsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AuthorsConnectionEdges', cursor: string, node?: { __typename: 'Authors', id: string, title: string, description?: string | null, image?: string | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type AuthorsConnectionQuery = { authorsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Authors', id: string, title: string, description: string | null, image: string | null, draft: boolean | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PagesQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
+  relativePath: string;
 }>;
 
 
-export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'Pages', id: string, title: string, meta_title?: string | null, description?: string | null, image?: string | null, draft?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PagesQuery = { pages: { __typename: 'Pages', id: string, title: string, meta_title: string | null, description: string | null, image: string | null, draft: boolean | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PagesConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<PagesFilter>;
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: PagesFilter | null | undefined;
 }>;
 
 
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, title: string, meta_title?: string | null, description?: string | null, image?: string | null, draft?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PagesConnectionQuery = { pagesConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Pages', id: string, title: string, meta_title: string | null, description: string | null, image: string | null, draft: boolean | null, body: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type ProgramsQueryVariables = Exact<{
+  relativePath: string;
+}>;
+
+
+export type ProgramsQuery = { programs: { __typename: 'Programs', id: string, title: string, subtitle: string | null, description: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, phases: Array<{ __typename: 'ProgramsPhases', title: string | null, duration: string | null, link: string | null, content: any } | null> | null, components: Array<{ __typename: 'ProgramsComponents', title: string | null, content: any, list: string | null } | null> | null } };
+
+export type ProgramsConnectionQueryVariables = Exact<{
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: ProgramsFilter | null | undefined;
+}>;
+
+
+export type ProgramsConnectionQuery = { programsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Programs', id: string, title: string, subtitle: string | null, description: any, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, phases: Array<{ __typename: 'ProgramsPhases', title: string | null, duration: string | null, link: string | null, content: any } | null> | null, components: Array<{ __typename: 'ProgramsComponents', title: string | null, content: any, list: string | null } | null> | null } | null } | null> | null } };
 
 export const BlogPartsFragmentDoc = gql`
     fragment BlogParts on Blog {
@@ -590,6 +810,27 @@ export const PagesPartsFragmentDoc = gql`
   image
   draft
   body
+}
+    `;
+export const ProgramsPartsFragmentDoc = gql`
+    fragment ProgramsParts on Programs {
+  __typename
+  title
+  subtitle
+  description
+  phases {
+    __typename
+    title
+    duration
+    link
+    content
+  }
+  components {
+    __typename
+    title
+    content
+    list
+  }
 }
     `;
 export const BlogDocument = gql`
@@ -763,6 +1004,63 @@ export const PagesConnectionDocument = gql`
   }
 }
     ${PagesPartsFragmentDoc}`;
+export const ProgramsDocument = gql`
+    query programs($relativePath: String!) {
+  programs(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ProgramsParts
+  }
+}
+    ${ProgramsPartsFragmentDoc}`;
+export const ProgramsConnectionDocument = gql`
+    query programsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ProgramsFilter) {
+  programsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ProgramsParts
+      }
+    }
+  }
+}
+    ${ProgramsPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -783,6 +1081,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}> {
         return requester<{data: PagesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
+      },
+    programs(variables: ProgramsQueryVariables, options?: C): Promise<{data: ProgramsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProgramsQueryVariables, query: string}> {
+        return requester<{data: ProgramsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProgramsQueryVariables, query: string}, ProgramsQueryVariables>(ProgramsDocument, variables, options);
+      },
+    programsConnection(variables?: ProgramsConnectionQueryVariables, options?: C): Promise<{data: ProgramsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProgramsConnectionQueryVariables, query: string}> {
+        return requester<{data: ProgramsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProgramsConnectionQueryVariables, query: string}, ProgramsConnectionQueryVariables>(ProgramsConnectionDocument, variables, options);
       }
     };
   }
@@ -843,5 +1147,7 @@ export const queries = (
   const requester = generateRequester(client)
   return getSdk(requester)
 }
+
+export type { Exact };
 
   

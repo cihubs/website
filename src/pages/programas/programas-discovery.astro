@@ -1,0 +1,68 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProgramHero from "@/components/ProgramHero";
+import ProgramComponent from "@/components/ProgramComponent";
+import ProgramCTA from "@/components/ProgramCTA";
+---
+
+<Base
+  title="Programas Discovery"
+  meta_title="Programas Discovery - CIHUBS"
+  description="Programas de descubrimiento y exploración de oportunidades"
+>
+  <ProgramHero
+    title="Programas Discovery"
+    subtitle="DISCOVERY"
+    description="Nuestros programas Discovery están diseñados para ayudar a organizaciones y profesionales a explorar nuevas oportunidades, identificar tendencias emergentes y descubrir potenciales colaboraciones en el ecosistema de innovación."
+  />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <h2 class="text-3xl font-bold text-[#203370] mb-8" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Programas Disponibles
+          </h2>
+
+          <ProgramComponent
+            title="Discovery Tech"
+            content="<p>Programa de exploración de tecnologías emergentes y tendencias digitales. Los participantes descubren nuevas tecnologías, evalúan su aplicabilidad y identifican oportunidades de innovación.</p>"
+            list={[
+              "Inteligencia Artificial y Machine Learning",
+              "Blockchain y Web3",
+              "Internet of Things (IoT)",
+              "Realidad Aumentada y Virtual",
+              "Computación Cuántica"
+            ]}
+          />
+
+          <ProgramComponent
+            title="Discovery Market"
+            content="<p>Programa de análisis de mercados emergentes y oportunidades de negocio. Facilita la identificación de nichos de mercado, análisis de competitividad y desarrollo de estrategias de entrada.</p>"
+            list={[
+              "Análisis de tendencias de mercado",
+              "Estudios de viabilidad comercial",
+              "Mapeo de ecosistemas",
+              "Identificación de socios estratégicos",
+              "Desarrollo de modelos de negocio"
+            ]}
+          />
+
+          <ProgramComponent
+            title="Discovery Talent"
+            content="<p>Programa de descubrimiento y desarrollo de talento en innovación. Conecta organizaciones con profesionales calificados y facilita el desarrollo de habilidades críticas para la innovación.</p>"
+            list={[
+              "Mapeo de competencias digitales",
+              "Programas de upskilling y reskilling",
+              "Conexión con talento especializado",
+              "Desarrollo de liderazgo en innovación",
+              "Mentoría y coaching"
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

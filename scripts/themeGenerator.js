@@ -117,30 +117,31 @@ function generateThemeCSS() {
       }
     };
 
-    // Default colors mapped from tokens.json
-    mapColor("--color-primary", tokensConfig.color.primary?.base?.value);
-    mapColor("--color-secondary", tokensConfig.color.secondary?.base?.value);
-    mapColor("--color-body", tokensConfig.color.background?.base?.value);
-    mapColor("--color-border", tokensConfig.color.border?.base?.value);
-    mapColor("--color-light", tokensConfig.color.background?.light?.value);
-    mapColor("--color-dark", tokensConfig.color.primary?.dark?.value || "#040404"); // Defaulting if not strictly defined
+    // Default colors mapped from tokens.json (based on DESIGN.md structure)
+    mapColor("--color-primary", tokensConfig.color.primary?.value);
+    mapColor("--color-secondary", tokensConfig.color.secondary?.value);
+    mapColor("--color-tertiary", tokensConfig.color.tertiary?.value);
+    mapColor("--color-body", tokensConfig.color["neutral-bg"]?.value);
+    mapColor("--color-border", tokensConfig.color["pale-blue"]?.value);
+    mapColor("--color-light", tokensConfig.color["light-blue"]?.value);
+    mapColor("--color-dark", tokensConfig.color.primary?.value || "#040404");
 
-    mapColor("--color-text", tokensConfig.color.text?.secondary?.value);
-    mapColor("--color-text-dark", tokensConfig.color.text?.primary?.value);
-    mapColor("--color-text-light", tokensConfig.color.text?.light?.value);
+    mapColor("--color-text", tokensConfig.color.ink?.value);
+    mapColor("--color-text-dark", tokensConfig.color.primary?.value);
+    mapColor("--color-text-light", tokensConfig.color["light-blue"]?.value);
 
     cssLines.push("", "  /* === Accent Colors === */");
-    mapColor("--color-success", tokensConfig.color.accent?.success?.value);
-    mapColor("--color-warning", tokensConfig.color.accent?.warning?.value);
-    mapColor("--color-danger", tokensConfig.color.accent?.danger?.value);
-    mapColor("--color-info", tokensConfig.color.accent?.info?.value);
+    mapColor("--color-success", tokensConfig.color.tertiary?.value);
+    mapColor("--color-warning", tokensConfig.color["accent-gold"]?.value);
+    mapColor("--color-danger", tokensConfig.color["accent-rust"]?.value);
+    mapColor("--color-info", tokensConfig.color.secondary?.value);
 
-    // Add darkmode colors (what we just added to tokens.json under `color.darkmode.theme_color`)
-    if (tokensConfig.color.darkmode) {
+    // Add darkmode colors
+    if (tokensConfig.darkmode) {
       cssLines.push("", "  /* === Darkmode Colors === */");
 
-      const dmTheme = tokensConfig.color.darkmode.theme_color || {};
-      const dmText = tokensConfig.color.darkmode.text_color || {};
+      const dmTheme = tokensConfig.darkmode.theme_color || {};
+      const dmText = tokensConfig.darkmode.text_color || {};
 
       mapColor("--color-darkmode-primary", dmTheme.primary?.value);
       mapColor("--color-darkmode-secondary", dmTheme.secondary?.value);
@@ -154,35 +155,43 @@ function generateThemeCSS() {
       mapColor("--color-darkmode-text-light", dmText.text_light?.value);
     }
 
-    // Add font families
+    // Add font families (based on DESIGN.md: serif, sans, mono)
     cssLines.push("", "  /* === Font Families === */");
-    const pf = tokensConfig.font?.family?.primary?.value;
-    const sf = tokensConfig.font?.family?.secondary?.value;
+    const pf = tokensConfig.font?.family?.serif?.value;
+    const sf = tokensConfig.font?.family?.sans?.value;
+    const mf = tokensConfig.font?.family?.mono?.value;
     if (pf) cssLines.push(`  --font-primary: ${findFont(pf)}, sans-serif;`);
     if (sf) cssLines.push(`  --font-secondary: ${findFont(sf)}, sans-serif;`);
+    if (mf) cssLines.push(`  --font-mono: ${findFont(mf)}, monospace;`);
 
-    // Add font sizes - Astroplate calculates these iteratively from base size and scale.
-    // Our 'tokens.json' has them explicitly under `font.size`.
+    // Add font sizes - use explicit sizes from DESIGN.md tokens
     cssLines.push("", "  /* === Font Sizes === */");
 
-    // Convert 'rem' strings into pixel approximations if needed for text-base-sm, 
-    // or just calculate based on the explicit tokens.
-    // In original Astroplate theme.json: base = 16px, scale = 1.25. Let's calculate similarly or extract.
-    // Astroplate expects --text-base (px), --text-base-sm (px), --text-h1..h6 (rem), --text-h1-sm..h6-sm (rem)
+    // Base text size
+    const bodyMd = tokensConfig.font?.size?.["body-md"]?.value || "1rem";
+    cssLines.push(`  --text-base: ${bodyMd};`);
+    cssLines.push(`  --text-base-sm: ${parseFloat(bodyMd) * 0.8}rem;`);
 
-    // We'll mimic the old logic assuming base=16px scale=1.2 for the hX tags as that is hardcoded in Astroplate layouts logic.
-    const baseSize = 16;
-    const scale = 1.2;
+    // Header sizes from DESIGN.md
+    const h1 = tokensConfig.font?.size?.["h1"]?.value || "3.5rem";
+    const h2 = tokensConfig.font?.size?.["h2"]?.value || "2rem";
+    const labelMono = tokensConfig.font?.size?.["label-mono"]?.value || "0.75rem";
 
-    cssLines.push(`  --text-base: ${baseSize}px;`);
-    cssLines.push(`  --text-base-sm: ${baseSize * 0.8}px;`);
+    cssLines.push(`  --text-h1: ${h1};`);
+    cssLines.push(`  --text-h1-sm: ${parseFloat(h1) * 0.9}rem;`);
+    cssLines.push(`  --text-h2: ${h2};`);
+    cssLines.push(`  --text-h2-sm: ${parseFloat(h2) * 0.9}rem;`);
 
-    let currentSize = scale;
-    for (let i = 6; i >= 1; i--) {
+    // Generate remaining h3-h6 with scale
+    let currentSize = parseFloat(h2) * 1.2;
+    for (let i = 3; i <= 6; i++) {
       cssLines.push(`  --text-h${i}: ${currentSize}rem;`);
       cssLines.push(`  --text-h${i}-sm: ${currentSize * 0.9}rem;`);
-      currentSize *= scale;
+      currentSize *= 1.2;
     }
+
+    // Label mono size
+    cssLines.push(`  --text-label: ${labelMono};`);
 
     cssLines.push("}");
 

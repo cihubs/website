@@ -1,0 +1,92 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProgramHero from "@/components/ProgramHero";
+import ProgramPhase from "@/components/ProgramPhase";
+import ProgramComponent from "@/components/ProgramComponent";
+import ProgramCTA from "@/components/ProgramCTA";
+---
+
+<Base
+  title="Ciudades Científicas y Tecnológicas"
+  meta_title="Ciudades Científicas y Tecnológicas - CIHUBS"
+  description="Desarrollo de ciudades científicas y tecnológicas"
+>
+  <ProgramHero
+    title="Ciudades Científicas y Tecnológicas"
+    subtitle="PROGRAMA 4"
+    description="Desarrollamos ecosistemas urbanos integrados que fomentan la ciencia, la tecnología y la innovación. Transformamos ciudades en hubs de conocimiento donde conviven investigación, industria, talento y calidad de vida."
+  />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <h2 class="text-3xl font-bold text-[#203370] mb-8" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Etapas de Implementación
+          </h2>
+
+          <ProgramPhase
+            title="Etapa 1: Diagnóstico y Visión"
+            duration="3-4 meses"
+            content="<p>Evaluación del ecosistema local existente, análisis de fortalezas y debilidades, identificación de oportunidades y desarrollo de una visión estratégica compartida. Involucra a actores clave: gobierno, academia, industria y sociedad civil.</p>"
+          />
+
+          <ProgramPhase
+            title="Etapa 2: Planificación y Diseño"
+            duration="4-6 meses"
+            content="<p>Desarrollo de plan maestro integral que incluye planificación urbana, infraestructura tecnológica, políticas de innovación, programas de talento y modelos de gobernanza. Diseño de indicadores de éxito y mecanismos de evaluación.</p>"
+          />
+
+          <ProgramPhase
+            title="Etapa 3: Implementación Inicial"
+            duration="12-18 meses"
+            content="<p>Desarrollo de proyectos piloto y primeras iniciativas: infraestructura básica, programas de atracción de talento, incentivos para empresas tecnológicas y establecimiento de espacios de innovación. Creación de la marca de la ciudad científica.</p>"
+          />
+
+          <ProgramPhase
+            title="Etapa 4: Escalamiento y Consolidación"
+            duration="24-36 meses"
+            content="<p>Expansión de iniciativas exitosas, atracción de inversión masiva, consolidación de comunidad de innovación, desarrollo de ecosistema de startups y establecimiento de colaboraciones internacionales. Integración de componentes urbanos y tecnológicos.</p>"
+          />
+
+          <ProgramPhase
+            title="Etapa 5: Madurez y Liderazgo"
+            duration="36+ meses"
+            content="<p>Posicionamiento como referente regional/global en ciencia y tecnología. Ecosistema auto-sostenible con flujo continuo de talento, inversión e innovación. Contribución al desarrollo económico y social de la región.</p>"
+          />
+
+          <h2 class="text-3xl font-bold text-[#203370] mb-8 mt-12" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Componentes Clave
+          </h2>
+
+          <ProgramComponent
+            title="Distritos de Innovación"
+            content="<p>Zonas urbanas especializadas que concentran empresas tecnológicas, centros de investigación, espacios de co-working y ecosistema de apoyo.</p>"
+          />
+
+          <ProgramComponent
+            title="Infraestructura de Conectividad"
+            content="<p>Redes de alta velocidad, centros de datos, smart city technologies y plataformas digitales que conectan a todos los actores del ecosistema.</p>"
+          />
+
+          <ProgramComponent
+            title="Programas de Talento"
+            content="<p>Formación, atracción y retención de talento científico y tecnológico. Colaboración con universidades, programas de becas y calidad de vida.</p>"
+          />
+
+          <ProgramComponent
+            title="Políticas de Innovación"
+            content="<p>Marco regulatorio favorable, incentivos fiscales, simplificación de trámites y apoyo gubernamental a la innovación y emprendimiento.</p>"
+          />
+
+          <ProgramComponent
+            title="Vivienda y Calidad de Vida"
+            content="<p>Desarrollo de espacios urbanos integrados que combinan trabajo, vivienda, recreación y servicios para crear comunidades vibrantes.</p>"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

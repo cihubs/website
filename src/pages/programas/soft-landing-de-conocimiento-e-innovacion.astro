@@ -1,0 +1,75 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProgramHero from "@/components/ProgramHero";
+import ProgramPhase from "@/components/ProgramPhase";
+import ProgramComponent from "@/components/ProgramComponent";
+import ProgramCTA from "@/components/ProgramCTA";
+---
+
+<Base
+  title="Soft Landing de Conocimiento e Innovación"
+  meta_title="Soft Landing de Conocimiento e Innovación - CIHUBS"
+  description="Programa de aterrizaje suave para organizaciones de conocimiento e innovación"
+>
+  <ProgramHero
+    title="Soft Landing de Conocimiento e Innovación"
+    subtitle="PROGRAMA 1"
+    description="Facilitamos la llegada y establecimiento de organizaciones de conocimiento e innovación internacionales en la región, proporcionando apoyo integral para su integración exitosa en el ecosistema local."
+  />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <h2 class="text-3xl font-bold text-[#203370] mb-8" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Fases del Programa
+          </h2>
+
+          <ProgramPhase
+            title="Fase 1: Exploración y Diagnóstico"
+            duration="1-2 meses"
+            content="<p>Evaluación inicial de las necesidades de la organización y análisis del ecosistema local. Identificación de oportunidades de colaboración y alineación estratégica con actores clave.</p>"
+          />
+
+          <ProgramPhase
+            title="Fase 2: Conexión y Networking"
+            duration="2-3 meses"
+            content="<p>Establecimiento de conexiones con universidades, centros de investigación, empresas y gobierno. Participación en eventos y actividades de networking del ecosistema.</p>"
+          />
+
+          <ProgramPhase
+            title="Fase 3: Implementación y Acompañamiento"
+            duration="6-12 meses"
+            content="<p>Apoyo en la implementación de proyectos piloto, establecimiento de alianzas estratégicas y seguimiento continuo para asegurar la integración exitosa.</p>"
+          />
+
+          <h2 class="text-3xl font-bold text-[#203370] mb-8 mt-12" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Componentes del Programa
+          </h2>
+
+          <ProgramComponent
+            title="Asesoría Legal y Administrativa"
+            content="<p>Apoyo en trámites de constitución, permisos y regulaciones locales para el establecimiento de operaciones.</p>"
+          />
+
+          <ProgramComponent
+            title="Conexión con Ecosistema"
+            content="<p>Acceso a red de contactos con universidades, centros de investigación, empresas y entidades gubernamentales.</p>"
+          />
+
+          <ProgramComponent
+            title="Espacios de Co-working"
+            content="<p>Acceso a espacios de trabajo colaborativo equipados para facilitar la operación inicial.</p>"
+          />
+
+          <ProgramComponent
+            title="Programas de Mentoría"
+            content="<p>Acompañamiento por expertos locales en el sector de conocimiento e innovación.</p>"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

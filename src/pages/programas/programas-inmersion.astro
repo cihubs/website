@@ -1,0 +1,87 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProgramHero from "@/components/ProgramHero";
+import ProgramComponent from "@/components/ProgramComponent";
+import ProgramCTA from "@/components/ProgramCTA";
+---
+
+<Base
+  title="Programas Inmersión"
+  meta_title="Programas Inmersión - CIHUBS"
+  description="Programas de inmersión profunda en ecosistemas de innovación"
+>
+  <ProgramHero
+    title="Programas Inmersión"
+    subtitle="INMERSIÓN"
+    description="Los programas Inmersión ofrecen una experiencia profunda y transformadora en ecosistemas de innovación líderes. Los participantes se integran completamente en el ecosistema, desarrollan proyectos reales y establecen conexiones duraderas."
+  />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <h2 class="text-3xl font-bold text-[#203370] mb-8" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Programas Principales
+          </h2>
+
+          <ProgramComponent
+            title="Inmersión en Ecosistemas Globales"
+            content="<p>Programa de inmersión en ecosistemas de innovación líderes como Silicon Valley, Tel Aviv, Singapur y Berlín. Los participantes vivencian firsthand la cultura de innovación y establecen conexiones internacionales.</p>"
+            list={[
+              "Visitas a centros de investigación y universidades",
+              "Meetings con startups y empresas tecnológicas",
+              "Participación en eventos de innovación",
+              "Networking con inversores y aceleradoras",
+              "Desarrollo de proyectos de colaboración"
+            ]}
+          />
+
+          <ProgramComponent
+            title="Inmersión Corporativa"
+            content="<p>Programa de inmersión en empresas líderes en innovación. Los participantes aprenden sobre metodologías, procesos y culturas organizacionales que fomentan la innovación continua.</p>"
+            list={[
+              "Shadowing en equipos de innovación",
+              "Participación en hackathons corporativos",
+              "Acceso a laboratorios de innovación",
+              "Mentoría por ejecutivos senior",
+              "Desarrollo de proyectos piloto"
+            ]}
+          />
+
+          <ProgramComponent
+            title="Inmersión Académica"
+            content="<p>Programa de inmersión en instituciones académicas de excelencia en investigación y desarrollo. Los participantes colaboran en proyectos de investigación y acceden a recursos de vanguardia.</p>"
+            list={[
+              "Colaboración en proyectos de investigación",
+              "Acceso a laboratorios y equipamiento",
+              "Publicación conjunta de papers",
+              "Participación en conferencias académicas",
+              "Desarrollo de tesis y disertaciones"
+            ]}
+          />
+
+          <h2 class="text-3xl font-bold text-[#203370] mb-8 mt-12" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Subprogramas Especializados
+          </h2>
+
+          <ProgramComponent
+            title="Inmersión en Deep Tech"
+            content="<p>Subprograma enfocado en tecnologías profundas como biotecnología, nanotecnología, inteligencia artificial avanzada y computación cuántica.</p>"
+          />
+
+          <ProgramComponent
+            title="Inmersión en Social Innovation"
+            content="<p>Subprograma centrado en innovación social, impacto ambiental y desarrollo sostenible. Colaboración con ONGs, gobiernos y organizaciones internacionales.</p>"
+          />
+
+          <ProgramComponent
+            title="Inmersión en Digital Transformation"
+            content="<p>Subprograma especializado en transformación digital, agilidad organizacional y adopción de tecnologías emergentes en empresas tradicionales.</p>"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

@@ -7,49 +7,52 @@
 @theme {
   /* === Colors === */
   --color-primary: #203370;
-  --color-secondary: #201F4F;
-  --color-body: #FFFFFF;
-  --color-border: #E0E0E0;
-  --color-light: #FAFAFA;
-  --color-dark: #1a2a56;
-  --color-text: #666666;
-  --color-text-dark: #333333;
-  --color-text-light: #999999;
+  --color-secondary: #2a4289;
+  --color-tertiary: #4a6fa5;
+  --color-body: #f7f9fc;
+  --color-border: #b8d4ea;
+  --color-light: #7ba3d6;
+  --color-dark: #203370;
+  --color-text: #1a1a2e;
+  --color-text-dark: #203370;
+  --color-text-light: #7ba3d6;
 
   /* === Accent Colors === */
-  --color-success: #00A651;
-  --color-warning: #FCB900;
-  --color-danger: #CF2E2E;
-  --color-info: #0693E3;
+  --color-success: #4a6fa5;
+  --color-warning: #fec503;
+  --color-danger: #c45c3a;
+  --color-info: #2a4289;
 
   /* === Darkmode Colors === */
   --color-darkmode-primary: #203370;
-  --color-darkmode-secondary: #201F4F;
-  --color-darkmode-body: #06122a;
-  --color-darkmode-border: #1d336f;
-  --color-darkmode-light: #0f1e4d;
+  --color-darkmode-secondary: #2a4289;
+  --color-darkmode-body: #0a1425;
+  --color-darkmode-border: #2a4289;
+  --color-darkmode-light: #203370;
   --color-darkmode-dark: #ffffff;
-  --color-darkmode-text: #b3c0d6;
+  --color-darkmode-text: #7ba3d6;
   --color-darkmode-text-dark: #ffffff;
-  --color-darkmode-text-light: #94a3b8;
+  --color-darkmode-text-light: #4a6fa5;
 
   /* === Font Families === */
-  --font-primary: Open Sans, sans-serif;
-  --font-secondary: Work Sans, sans-serif;
+  --font-primary: "DM Serif Display", sans-serif;
+  --font-secondary: "DM Sans", sans-serif;
+  --font-mono: "DM Mono", monospace;
 
   /* === Font Sizes === */
-  --text-base: 16px;
-  --text-base-sm: 12.8px;
-  --text-h6: 1.2rem;
-  --text-h6-sm: 1.08rem;
-  --text-h5: 1.44rem;
-  --text-h5-sm: 1.296rem;
-  --text-h4: 1.728rem;
-  --text-h4-sm: 1.5552rem;
-  --text-h3: 2.0736rem;
-  --text-h3-sm: 1.86624rem;
-  --text-h2: 2.48832rem;
-  --text-h2-sm: 2.239488rem;
-  --text-h1: 2.9859839999999997rem;
-  --text-h1-sm: 2.6873856rem;
+  --text-base: 1rem;
+  --text-base-sm: 0.8rem;
+  --text-h1: 3.5rem;
+  --text-h1-sm: 3.15rem;
+  --text-h2: 2rem;
+  --text-h2-sm: 1.8rem;
+  --text-h3: 2.4rem;
+  --text-h3-sm: 2.16rem;
+  --text-h4: 2.88rem;
+  --text-h4-sm: 2.592rem;
+  --text-h5: 3.456rem;
+  --text-h5-sm: 3.1104rem;
+  --text-h6: 4.1472rem;
+  --text-h6-sm: 3.73248rem;
+  --text-label: 0.75rem;
 }

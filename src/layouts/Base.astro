@@ -1,7 +1,7 @@
 ---
 import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import config from "@/config/config.json";
-import tokens from "../../../tokens/tokens.json";
+import tokens from "../../tokens/tokens.json";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
@@ -16,8 +16,8 @@ import Announcement from "./helpers/Announcement";
 import SearchModal from "./helpers/SearchModal";
 
 // font families
-const pf = tokens.font?.family?.primary?.value || "sans-serif";
-const sf = tokens.font?.family?.secondary?.value || "sans-serif";
+const pf = tokens.font?.family?.serif?.value || "DM Serif Display";
+const sf = tokens.font?.family?.sans?.value || "DM Sans";
 
 let fontPrimary = pf
   .replace(/\+/g, " ")

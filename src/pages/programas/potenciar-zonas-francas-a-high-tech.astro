@@ -1,0 +1,96 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProgramHero from "@/components/ProgramHero";
+import ProgramComponent from "@/components/ProgramComponent";
+import ProgramCTA from "@/components/ProgramCTA";
+---
+
+<Base
+  title="Potenciar Zonas Francas a High-Tech"
+  meta_title="Potenciar Zonas Francas a High-Tech - CIHUBS"
+  description="Transformación de zonas francas en centros de alta tecnología"
+>
+  <ProgramHero
+    title="Potenciar Zonas Francas a High-Tech"
+    subtitle="PROGRAMA 2"
+    description="Transformamos zonas francas tradicionales en centros de alta tecnología, potenciando su capacidad para atraer empresas tecnológicas, fomentar la innovación y generar valor agregado en la economía del conocimiento."
+  />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <h2 class="text-3xl font-bold text-[#203370] mb-8" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Funciones Clave
+          </h2>
+
+          <ProgramComponent
+            title="Atracción de Inversión Tecnológica"
+            content="<p>Desarrollo de estrategias para atraer empresas de alta tecnología a zonas francas, incluyendo incentivos fiscales, infraestructura especializada y servicios de apoyo.</p>"
+          />
+
+          <ProgramComponent
+            title="Desarrollo de Infraestructura Digital"
+            content="<p>Implementación de infraestructura de última generación: conectividad de alta velocidad, centros de datos, laboratorios tecnológicos y espacios de innovación.</p>"
+          />
+
+          <ProgramComponent
+            title="Conexión con Ecosistemas Globales"
+            content="<p>Establecimiento de alianzas con ecosistemas de innovación internacionales para facilitar el flujo de conocimiento, talento y tecnología.</p>"
+          />
+
+          <ProgramComponent
+            title="Formación de Talento Tech"
+            content="<p>Programas de capacitación y desarrollo de habilidades digitales para la fuerza laboral local, en colaboración con universidades y centros de formación.</p>"
+          />
+
+          <ProgramComponent
+            title="Promoción de I+D+i"
+            content="<p>Fomento de actividades de investigación, desarrollo e innovación dentro de la zona franca, incentivando la creación de propiedad intelectual y transferencia tecnológica.</p>"
+          />
+
+          <h2 class="text-3xl font-bold text-[#203370] mb-8 mt-12" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Componentes del Programa
+          </h2>
+
+          <ProgramComponent
+            title="Incubadora de Startups"
+            content="<p>Espacio de incubación para startups tecnológicas con servicios de mentoría, financiamiento y networking.</p>"
+          />
+
+          <ProgramComponent
+            title="Aceleradora de Empresas"
+            content="<p>Programa de aceleración para empresas establecidas que buscan escalar sus operaciones tecnológicas.</p>"
+          />
+
+          <ProgramComponent
+            title="Centro de I+D"
+            content="<p>Laboratorios de investigación y desarrollo equipados para proyectos en biotecnología, software, hardware y telecomunicaciones.</p>"
+          />
+
+          <ProgramComponent
+            title="Hub de Conectividad"
+            content="<p>Centro de conectividad de alta velocidad con acceso a redes globales y servicios de nube.</p>"
+          />
+
+          <ProgramComponent
+            title="Centro de Formación"
+            content="<p>Instalaciones para programas de capacitación técnica y profesional en tecnologías emergentes.</p>"
+          />
+
+          <ProgramComponent
+            title="Zona de Prototipado"
+            content="<p>Equipamiento y maquinaria para prototipado rápido y fabricación digital (3D printing, CNC, etc.).</p>"
+          />
+
+          <ProgramComponent
+            title="Espacios de Co-working"
+            content="<p>Áreas de trabajo colaborativo diseñadas para fomentar la interacción y el intercambio de conocimiento entre empresas y profesionales.</p>"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

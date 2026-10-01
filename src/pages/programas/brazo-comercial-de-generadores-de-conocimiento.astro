@@ -1,0 +1,122 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProgramHero from "@/components/ProgramHero";
+import ProgramComponent from "@/components/ProgramComponent";
+import ProgramCTA from "@/components/ProgramCTA";
+---
+
+<Base
+  title="Brazo Comercial de Generadores de Conocimiento"
+  meta_title="Brazo Comercial de Generadores de Conocimiento - CIHUBS"
+  description="Comercialización de conocimientos y tecnologías generadas"
+>
+  <ProgramHero
+    title="Brazo Comercial de Generadores de Conocimiento"
+    subtitle="PROGRAMA 5"
+    description="Actuamos como el brazo comercial de generadores de conocimiento como universidades, centros de investigación y laboratorios, facilitando la comercialización de sus investigaciones, tecnologías y propiedades intelectuales en el mercado global."
+  />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <h2 class="text-3xl font-bold text-[#203370] mb-8" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Servicios de Comercialización
+          </h2>
+
+          <ProgramComponent
+            title="Transferencia de Tecnología"
+            content="<p>Facilitamos la transferencia de tecnologías desarrolladas en centros de investigación hacia el mercado, identificando oportunidades, negociando licencias y gestionando el proceso de comercialización.</p>"
+          />
+
+          <ProgramComponent
+            title="Licenciamiento de Propiedad Intelectual"
+            content="<p>Gestionamos el portafolio de propiedad intelectual de generadores de conocimiento, identificando oportunidades de licenciamiento, negociando términos y administrando contratos.</p>"
+          />
+
+          <ProgramComponent
+            title="Spin-offs y Startups"
+            content="<p>Apoyamos la creación de empresas derivadas (spin-offs) de investigación académica, proporcionando servicios de incubación, financiamiento y desarrollo de modelo de negocio.</p>"
+          />
+
+          <ProgramComponent
+            title="Consultoría Técnica Especializada"
+            content="<p>Conectamos a expertos de centros de investigación con empresas que requieren consultoría especializada en áreas técnicas específicas.</p>"
+          />
+
+          <ProgramComponent
+            title="Proyectos de I+D Colaborativa"
+            content="<p>Facilitamos la formación de consorcios entre generadores de conocimiento y empresas para desarrollar proyectos de investigación y desarrollo colaborativa.</p>"
+          />
+
+          <h2 class="text-3xl font-bold text-[#203370] mb-8 mt-12" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Programa Venture Builder
+          </h2>
+
+          <div class="mb-8 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+            <p class="text-gray-700 mb-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, lineHeight: '1.6' }}>
+              Nuestro programa Venture Builder es un motor de creación de empresas basadas en conocimiento e innovación. Identificamos oportunidades de mercado, conectamos con talento y generadores de conocimiento, y construimos empresas escalables desde cero.
+            </p>
+          </div>
+
+          <ProgramComponent
+            title="Identificación de Oportunidades"
+            content="<p>Investigación sistemática de mercados, tendencias y tecnologías emergentes para identificar oportunidades de creación de empresas basadas en conocimiento.</p>"
+            list={[
+              "Análisis de mercado y competencia",
+              "Validación de problemas y necesidades",
+              "Evaluación de viabilidad técnica y comercial",
+              "Mapeo de ecosistemas y actores clave"
+            ]}
+          />
+
+          <ProgramComponent
+            title="Conformación de Equipos"
+            content="<p>Reclutamiento y conformación de equipos multidisciplinarios combinando talento emprendedor con expertos técnicos y generadores de conocimiento.</p>"
+            list={[
+              "Identificación de perfiles clave",
+              "Conexión con talentos del ecosistema",
+              "Programas de equity y compensación",
+              "Desarrollo de cultura organizacional"
+            ]}
+          />
+
+          <ProgramComponent
+            title="Desarrollo de Producto"
+            content="<p>Desarrollo iterativo de productos y servicios basados en conocimiento, desde prototipo hasta producto escalable.</p>"
+            list={[
+              "Metodologías ágiles de desarrollo",
+              "Validación con usuarios",
+              "Desarrollo de MVP",
+              "Escalamiento de producto"
+            ]}
+          />
+
+          <ProgramComponent
+            title="Modelo de Negocio"
+            content="<p>Diseño y validación de modelos de negocio sostenibles y escalables para empresas basadas en conocimiento.</p>"
+            list={[
+              "Definición de proposición de valor",
+              "Estrategia de monetización",
+              "Análisis de unit economics",
+              "Planeación de crecimiento"
+            ]}
+          />
+
+          <ProgramComponent
+            title="Acceso a Financiamiento"
+            content="<p>Conexión con redes de inversores, preparation para rondas de financiamiento y gestión de capital para el crecimiento de las empresas.</p>"
+            list={[
+              "Preparación de pitch deck",
+              "Conexión con ángeles y VCs",
+              "Gestión de rondas de inversión",
+              "Relaciones inversionistas"
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

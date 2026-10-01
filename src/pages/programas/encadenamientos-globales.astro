@@ -1,0 +1,95 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProgramHero from "@/components/ProgramHero";
+import ProgramPhase from "@/components/ProgramPhase";
+import ProgramComponent from "@/components/ProgramComponent";
+import ProgramCTA from "@/components/ProgramCTA";
+---
+
+<Base
+  title="Encadenamientos Globales"
+  meta_title="Encadenamientos Globales - CIHUBS"
+  description="Conexión con cadenas globales de valor y conocimiento"
+>
+  <ProgramHero
+    title="Encadenamientos Globales"
+    subtitle="PROGRAMA 3"
+    description="Facilitamos la integración de empresas y organizaciones locales en cadenas globales de valor y conocimiento, conectándolas con mercados internacionales, socios estratégicos y oportunidades de colaboración transfronteriza."
+  />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <h2 class="text-3xl font-bold text-[#203370] mb-8" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Descripción del Programa
+          </h2>
+
+          <div class="mb-8 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+            <p class="text-gray-700 mb-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, lineHeight: '1.6' }}>
+              El programa de Encadenamientos Globales tiene como objetivo posicionar a las empresas y organizaciones locales como proveedores de valor en cadenas globales de conocimiento e innovación. A través de un enfoque sistemático, identificamos oportunidades, desarrollamos capacidades y establecemos conexiones duraderas con actores internacionales.
+            </p>
+            <p class="text-gray-700" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, lineHeight: '1.6' }}>
+              El programa se enfoca en sectores estratégicos como biotecnología, software, servicios de conocimiento, manufactura avanzada y economías creativas, donde el conocimiento y la innovación son factores clave de competitividad.
+            </p>
+          </div>
+
+          <h2 class="text-3xl font-bold text-[#203370] mb-8" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Etapas del Programa
+          </h2>
+
+          <ProgramPhase
+            title="Etapa 1: Diagnóstico y Mapeo"
+            duration="2-3 meses"
+            content="<p>Evaluación de capacidades actuales, identificación de oportunidades de encadenamiento y mapeo de cadenas globales relevantes. Análisis de brechas y desarrollo de roadmap de integración.</p>"
+          />
+
+          <ProgramPhase
+            title="Etapa 2: Desarrollo de Capacidades"
+            duration="4-6 meses"
+            content="<p>Fortalecimiento de capacidades técnicas, de gestión y de cumplimiento para cumplir con estándares internacionales. Certificaciones, mejoras de procesos y formación de equipos.</p>"
+          />
+
+          <ProgramPhase
+            title="Etapa 3: Conexión y Networking"
+            duration="3-4 meses"
+            content="<p>Establecimiento de conexiones con potenciales socios internacionales: empresas, centros de investigación, instituciones académicas y organismos multilaterales. Participación en misiones comerciales y eventos internacionales.</p>"
+          />
+
+          <ProgramPhase
+            title="Etapa 4: Pilotos y Validación"
+            duration="6-12 meses"
+            content="<p>Desarrollo de proyectos piloto con socios internacionales para validar la integración en cadenas globales. Ajuste de procesos y modelamiento de relaciones de colaboración.</p>"
+          />
+
+          <ProgramPhase
+            title="Etapa 5: Escalamiento y Consolidación"
+            duration="12+ meses"
+            content="<p>Escalamiento de relaciones exitosas, diversificación de socios y consolidación de la posición en cadenas globales. Monitoreo continuo y mejora continua.</p>"
+          />
+
+          <h2 class="text-3xl font-bold text-[#203370] mb-8 mt-12" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+            Componentes de Apoyo
+          </h2>
+
+          <ProgramComponent
+            title="Inteligencia de Mercados"
+            content="<p>Análisis de tendencias globales, identificación de oportunidades y monitoreo de cadenas de valor internacionales.</p>"
+          />
+
+          <ProgramComponent
+            title="Asesoría en Comercio Exterior"
+            content="<p>Apoyo en regulaciones, logística, incoterms y aspectos legales del comercio internacional de servicios y conocimiento.</p>"
+          />
+
+          <ProgramComponent
+            title="Plataforma de Conexiones"
+            content="<p>Acceso a base de datos de socios potenciales, matchmaking y facilitación de reuniones y negociaciones.</p>"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

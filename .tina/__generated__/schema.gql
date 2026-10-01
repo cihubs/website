@@ -60,12 +60,15 @@ type Query {
   authorsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AuthorsFilter): AuthorsConnection!
   pages(relativePath: String): Pages!
   pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
+  programs(relativePath: String): Programs!
+  programsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ProgramsFilter): ProgramsConnection!
 }
 
 input DocumentFilter {
   blog: BlogFilter
   authors: AuthorsFilter
   pages: PagesFilter
+  programs: ProgramsFilter
 }
 
 type DocumentConnectionEdges {
@@ -91,7 +94,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Blog | Authors | Pages | Folder
+union DocumentNode = Blog | Authors | Pages | Programs | Folder
 
 type BlogCategories {
   category: String
@@ -235,6 +238,62 @@ type PagesConnection implements Connection {
   edges: [PagesConnectionEdges]
 }
 
+type ProgramsPhases {
+  title: String
+  duration: String
+  link: String
+  content: JSON
+}
+
+type ProgramsComponents {
+  title: String
+  content: JSON
+  list: String
+}
+
+type Programs implements Node & Document {
+  title: String!
+  subtitle: String
+  description: JSON
+  phases: [ProgramsPhases]
+  components: [ProgramsComponents]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ProgramsPhasesFilter {
+  title: StringFilter
+  duration: StringFilter
+  link: StringFilter
+  content: RichTextFilter
+}
+
+input ProgramsComponentsFilter {
+  title: StringFilter
+  content: RichTextFilter
+  list: StringFilter
+}
+
+input ProgramsFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  description: RichTextFilter
+  phases: ProgramsPhasesFilter
+  components: ProgramsComponentsFilter
+}
+
+type ProgramsConnectionEdges {
+  cursor: String!
+  node: Programs
+}
+
+type ProgramsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ProgramsConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -247,12 +306,15 @@ type Mutation {
   createAuthors(relativePath: String!, params: AuthorsMutation!): Authors!
   updatePages(relativePath: String!, params: PagesMutation!): Pages!
   createPages(relativePath: String!, params: PagesMutation!): Pages!
+  updatePrograms(relativePath: String!, params: ProgramsMutation!): Programs!
+  createPrograms(relativePath: String!, params: ProgramsMutation!): Programs!
 }
 
 input DocumentUpdateMutation {
   blog: BlogMutation
   authors: AuthorsMutation
   pages: PagesMutation
+  programs: ProgramsMutation
   relativePath: String
 }
 
@@ -260,6 +322,7 @@ input DocumentMutation {
   blog: BlogMutation
   authors: AuthorsMutation
   pages: PagesMutation
+  programs: ProgramsMutation
 }
 
 input BlogCategoriesMutation {
@@ -297,6 +360,27 @@ input PagesMutation {
   image: String
   draft: Boolean
   body: JSON
+}
+
+input ProgramsPhasesMutation {
+  title: String
+  duration: String
+  link: String
+  content: JSON
+}
+
+input ProgramsComponentsMutation {
+  title: String
+  content: JSON
+  list: String
+}
+
+input ProgramsMutation {
+  title: String
+  subtitle: String
+  description: JSON
+  phases: [ProgramsPhasesMutation]
+  components: [ProgramsComponentsMutation]
 }
 
 schema {
