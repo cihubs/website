@@ -1,5 +1,21 @@
 .header {
-  @apply bg-body dark:bg-darkmode-body py-6;
+  @apply py-6 transition-colors;
+}
+.header-scrolled {
+  @apply bg-body dark:bg-darkmode-body shadow-sm;
+}
+.header-transparent:not(.header-scrolled) {
+  @apply bg-transparent;
+}
+.header-transparent:not(.header-scrolled) .nav-link,
+.header-transparent:not(.header-scrolled) .nav-lang {
+  @apply text-white;
+}
+.header-transparent:not(.header-scrolled) .logo-light {
+  display: none;
+}
+.header-transparent:not(.header-scrolled) .logo-dark {
+  display: inline-block;
 }
 
 /* navbar items */

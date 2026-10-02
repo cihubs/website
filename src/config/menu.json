@@ -1,47 +1,47 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "Inicio",
       "url": "/"
     },
     {
-      "name": "About",
+      "name": "CIHubs",
       "url": "/about"
     },
     {
-      "name": "Elements",
-      "url": "/elements"
-    },
-    {
-      "name": "Pages",
+      "name": "Programas",
       "url": "",
       "hasChildren": true,
       "children": [
         {
-          "name": "Contact",
-          "url": "/contact"
+          "name": "Soft Landing de Conocimiento e Innovación",
+          "url": "https://cihubs.com/soft-landing-de-conocimiento-e-innovacion/"
         },
         {
-          "name": "Blog",
-          "url": "/blog"
+          "name": "Zonas Francas – Parques Científicos y Tecnológicos",
+          "url": "https://cihubs.com/potenciar-zonas-francas-a-high-tech/"
         },
         {
-          "name": "Authors",
-          "url": "/authors"
+          "name": "Cadenas de valor globales",
+          "url": "https://cihubs.com/encadenamientos-globales/"
         },
         {
-          "name": "Categories",
-          "url": "/categories"
+          "name": "Ciudades Científicas y Tecnológicas",
+          "url": "https://cihubs.com/ciudades-cientificas-y-tecnologicas/"
         },
         {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
+          "name": "Brazo comercial para centros generadores de conocimiento",
+          "url": "https://cihubs.com/brazo-comercial-de-generadores-de-conocimiento/"
         }
       ]
+    },
+    {
+      "name": "Noticias",
+      "url": "/blog"
+    },
+    {
+      "name": "Aliados",
+      "url": "https://cihubs.com/aliados/"
     }
   ],
   "footer": [

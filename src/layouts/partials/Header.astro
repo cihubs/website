@@ -5,7 +5,6 @@ import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import Icon from "@/helpers/Icon.astro";
 import { withBase } from "@/lib/utils/withBase";
-import { withBase } from "@/lib/utils/withBase";
 
 export interface ChildNavigationLink {
   name: string;
@@ -22,9 +21,12 @@ export interface NavigationLink {
 const { main }: { main: NavigationLink[] } = menu;
 const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
+const norm = (p: string) => (p.replace(/\/$/, "") || "/");
+const isHome = norm(pathname) === norm(withBase("/"));  // trailing_slash:false may strip it
+const headerClass = isHome ? "header-transparent" : "header-scrolled";
 ---
 
-<header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
+<header id="site-header" class={`header z-30 ${settings.sticky_header && "sticky top-0"} ${headerClass}`}>
   <nav class="navbar container">
     <!-- logo -->
     <div class="order-0">
@@ -142,6 +144,32 @@ const { pathname } = Astro.url;
         )
       }
       <ThemeSwitcher className="mr-5" />
+      <div class="relative mr-5 hidden sm:inline-block">
+        <button
+          id="lang-switcher-button"
+          data-dropdown-toggle="lang-switcher-menu"
+          class="nav-lang inline-flex items-center gap-1 text-sm font-semibold"
+          aria-label="Idioma"
+        >
+          ES
+          <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+          </svg>
+        </button>
+        <div
+          id="lang-switcher-menu"
+          class="z-50 hidden divide-y divide-gray-100 rounded-lg border border-gray-200 bg-white shadow-lg"
+        >
+          <ul class="py-2 text-sm" aria-labelledby="lang-switcher-button">
+            <li>
+              <span class="block px-4 py-2 text-gray-700">Español (actual)</span>
+            </li>
+            <li>
+              <span class="block cursor-not-allowed px-4 py-2 text-gray-400">English (próximamente)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
       {
         navigation_button.enable && (
           <a
@@ -158,4 +186,23 @@ const { pathname } = Astro.url;
       }
     </div>
   </nav>
+  <script>
+    function initHeaderScroll() {
+      var header = document.getElementById("site-header");
+      if (!header || header.dataset.scrollReady) return;
+      header.dataset.scrollReady = "true";
+      var onScroll = function () {
+        if (!header.classList.contains("header-transparent")) {
+          header.classList.add("header-scrolled");
+          return;
+        }
+        if (window.scrollY > 40) header.classList.add("header-scrolled");
+        else header.classList.remove("header-scrolled");
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+    initHeaderScroll();
+    document.addEventListener("astro:page-load", initHeaderScroll);
+  </script>
 </header>
