@@ -67,7 +67,7 @@ const faqs = [
 <Base title={title} description={description}>
   <style>
     .faq-chevron { transition: transform 0.3s ease; }
-    [aria-expanded="true"] .faq-chevron { transform: rotate(180deg); }
+    [aria-expanded="true"] .faq-chevron { transform: rotate(90deg); }
   </style>
   <!-- Hero -->
   <ProgramHero
@@ -209,13 +209,13 @@ const faqs = [
                   <h3 id={`faq-heading-${i}`}>
                     <button
                       type="button"
-                      class="flex w-full items-center justify-between gap-3 border-b border-border py-5 text-left font-medium dark:border-darkmode-border"
+                      class="flex w-full items-center gap-3 border-b border-border py-5 text-left font-medium dark:border-darkmode-border"
                       data-accordion-target={`#faq-body-${i}`}
                       aria-expanded={i === 0 ? "true" : "false"}
                       aria-controls={`faq-body-${i}`}
                     >
+                      <Icon name="chevron-right" className="faq-chevron shrink-0" />
                       <span>{faq.q}</span>
-                      <Icon name="chevron-down" className="faq-chevron shrink-0" />
                     </button>
                   </h3>
                   <div id={`faq-body-${i}`} aria-labelledby={`faq-heading-${i}`} class={i !== 0 ? "hidden" : ""}>
