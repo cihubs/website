@@ -168,3 +168,16 @@
   @apply prose-tr:border-border dark:prose-tr:border-darkmode-border;
   @apply prose-td:relative prose-td:z-10 prose-td:px-3 prose-td:py-[18px] dark:prose-td:text-darkmode-text;
 }
+
+/* Parallax section backgrounds (WordPress originals, CIHUBS uploads) */
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}

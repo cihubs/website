@@ -4,6 +4,7 @@ import Icon from "@/helpers/Icon.astro";
 import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { markdownify } from "@/lib/utils/textConverter";
+import { withBase } from "@/lib/utils/withBase";
 import CallToAction from "@/partials/CallToAction.astro";
 import Testimonial from "@/partials/Testimonial.astro";
 
@@ -16,16 +17,20 @@ const { banner, features } = homepage.data;
 
 <Base>
   <!-- Banner -->
-  <section class="section pt-14">
-    <div class="container">
+  <section
+    class="section parallax relative pt-14"
+    style={`background-image: url(${withBase("/images/cihubs-space.jpg")})`}
+  >
+    <div class="absolute inset-0 bg-[#203370]/70"></div>
+    <div class="container relative">
       <div class="row justify-center">
         <div class="lg:col-7 md:col-9 mb-8 text-center">
           <h1
             data-anim
             set:html={markdownify(banner.title)}
-            class="mb-4 text-h3 lg:text-h1"
+            class="mb-4 text-h3 text-white lg:text-h1"
           />
-          <p data-anim set:html={markdownify(banner.content)} class="mb-8" />
+          <p data-anim set:html={markdownify(banner.content)} class="mb-8 text-white" />
           {
             banner.button.enable && (
               <a
