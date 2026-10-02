@@ -148,10 +148,10 @@ const headerClass = isHome ? "header-transparent" : "header-scrolled";
         <button
           id="lang-switcher-button"
           data-dropdown-toggle="lang-switcher-menu"
-          class="nav-lang inline-flex items-center gap-1 text-sm font-semibold"
+          class="nav-lang inline-flex items-center gap-1 text-[13px] font-semibold uppercase tracking-wider"
           aria-label="Idioma"
         >
-          ES
+          Español
           <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
           </svg>
@@ -173,7 +173,7 @@ const headerClass = isHome ? "header-transparent" : "header-scrolled";
       {
         navigation_button.enable && (
           <a
-            class="btn btn-outline-primary btn-sm hidden lg:inline-block"
+            class="btn btn-outline-primary btn-sm hidden rounded-full uppercase tracking-widest lg:inline-block"
             href={withBase(navigation_button.link)}
             target={
               navigation_button.link.startsWith("http") ? "_blank" : "_self"

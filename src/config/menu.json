@@ -36,12 +36,12 @@
       ]
     },
     {
-      "name": "Noticias",
-      "url": "/blog"
-    },
-    {
       "name": "Aliados",
       "url": "https://cihubs.com/aliados/"
+    },
+    {
+      "name": "Editorial",
+      "url": "/blog"
     }
   ],
   "footer": [
@@ -50,7 +50,7 @@
       "url": "/contact"
     },
     {
-      "name": "Noticias",
+      "name": "Editorial",
       "url": "/blog"
     },
     {

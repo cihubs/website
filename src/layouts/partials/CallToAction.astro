@@ -3,51 +3,105 @@ import ImageMod from "@/components/ImageMod.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import { withBase } from "@/lib/utils/withBase";
 const { call_to_action } = Astro.props;
+
+const mapQuery = "Automercado+Los+Yoses,+San+José,+Costa+Rica";
+const mapEmbed = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+const mapLink = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 ---
 
 {
   call_to_action.data.enable && (
-    <section
-      class="parallax relative mb-28"
-      style={`background-image: url(${withBase("/images/cihubs-contact-parallax.png")})`}
-    >
-      <div class="absolute inset-0 bg-[#203370]/60"></div>
-      <div class="container relative">
-        <div class="rounded-xl bg-light px-4 py-16 dark:bg-darkmode-light xl:p-20">
-          <div class="row items-center justify-between">
-            <div class="mb-10 md:col-5 lg:col-4 md:order-2 md:mb-0">
-              <ImageMod
-                class="w-full"
-                src={call_to_action.data.image}
-                width={392}
-                height={390}
-                alt="cta-image"
-                format="webp"
-              />
-            </div>
-            <div class="md:col-7 md:order-1">
-              <h2
-                data-anim
-                set:html={markdownify(call_to_action.data.title)}
-                class="mb-2"
-              />
-              <p
-                data-anim
-                set:html={markdownify(call_to_action.data.description)}
-                class="mb-6"
-              />
-              {call_to_action.data.button.enable && (
-                <a
-                  data-anim
-                  class="btn btn-primary"
-                  href={withBase(call_to_action.data.button.link)}
-                >
-                  {call_to_action.data.button.label}
-                </a>
-              )}
-            </div>
+    <section class="relative overflow-hidden bg-[#203370]">
+      <div class="container relative pt-16 pb-0">
+        <div class="row items-center justify-between">
+          <div class="mb-10 md:col-6 md:mb-0">
+            <h2
+              data-anim
+              set:html={markdownify(call_to_action.data.title)}
+              class="mb-4 font-bold text-white"
+              style="font-family: 'Poppins', sans-serif; font-weight: 700;"
+            />
+            <p
+              data-anim
+              set:html={markdownify(call_to_action.data.description)}
+              class="text-lg text-white/90"
+              style="font-family: 'Montserrat', sans-serif; font-weight: 400;"
+            />
+          </div>
+          <div class="md:col-5">
+            <ImageMod
+              class="w-full"
+              src={call_to_action.data.image}
+              width={520}
+              height={515}
+              alt="cta-image"
+              format="webp"
+            />
           </div>
         </div>
+        <div class="row mt-8 bg-white shadow-xl">
+          <div class="border-b border-gray-200 px-8 py-10 text-center md:col-4 md:border-r md:border-b-0">
+            <svg class="mx-auto mb-4 h-10 w-10 text-[#203370]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21s-7-5.1-7-11a7 7 0 1 1 14 0c0 5.9-7 11-7 11Z" />
+              <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            <h3 class="mb-3 text-base font-bold tracking-wider text-gray-800 uppercase" style="font-family: 'Montserrat', sans-serif;">
+              Nuestra Oficina
+            </h3>
+            <p class="text-sm leading-relaxed text-gray-600" style="font-family: 'Montserrat', sans-serif;">
+              150 mts sur del Automercado Los Yoses<br />San José, Costa Rica
+            </p>
+          </div>
+          <div class="border-b border-gray-200 px-8 py-10 text-center md:col-4 md:border-r md:border-b-0">
+            <svg class="mx-auto mb-4 h-10 w-10 text-[#203370]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 4h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 3 6 4 6-4M8 14h8M8 11.5h5" />
+            </svg>
+            <h3 class="mb-3 text-base font-bold tracking-wider text-gray-800 uppercase" style="font-family: 'Montserrat', sans-serif;">
+              Nuestro Correo
+            </h3>
+            <p class="text-sm leading-relaxed text-gray-600" style="font-family: 'Montserrat', sans-serif;">
+              <a href="mailto:juanignacio@cihubs.com" class="transition hover:text-[#203370]">
+                juanignacio@cihubs.com
+              </a>
+            </p>
+          </div>
+          <div class="px-8 py-10 text-center md:col-4">
+            <svg class="mx-auto mb-4 h-10 w-10 text-[#203370]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z" />
+            </svg>
+            <h3 class="mb-3 text-base font-bold tracking-wider text-gray-800 uppercase" style="font-family: 'Montserrat', sans-serif;">
+              Nuestro Teléfono
+            </h3>
+            <p class="text-sm leading-relaxed text-gray-600" style="font-family: 'Montserrat', sans-serif;">
+              <a href="tel:+50684155247" class="transition hover:text-[#203370]">
+                +506 8415-5247
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="relative mt-0">
+        <iframe
+          title="Mapa de ubicación CIHubs"
+          src={mapEmbed}
+          class="h-[420px] w-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        />
+        <a
+          href={call_to_action.data.button.enable ? withBase(call_to_action.data.button.link) : mapLink}
+          target="_blank"
+          rel="noopener"
+          class="absolute bottom-8 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 rounded-full bg-[#203370] px-8 py-3 text-sm font-bold tracking-widest text-white uppercase shadow-lg transition hover:bg-[#2c4486]"
+          style="font-family: 'Montserrat', sans-serif;"
+        >
+          {call_to_action.data.button.enable ? call_to_action.data.button.label : "Ubíquenos"}
+          <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21s-7-5.1-7-11a7 7 0 1 1 14 0c0 5.9-7 11-7 11Z" />
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </a>
       </div>
     </section>
   )
