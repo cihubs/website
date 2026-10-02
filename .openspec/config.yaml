@@ -1,10 +1,12 @@
 schema: spec-driven
 
 context: |
-  Tech stack: Astro, TinaCMS, Tailwind CSS, TypeScript
-  CMS: TinaCMS for content management
-  Design System: @cihubs/design-system with CIHUBS blue palette (#203370)
-  Fonts: DM Serif Display, DM Sans, DM Mono
+  Tech stack: Astro, Qwik islands (@qwikdev/astro + flowbite-qwik), TinaCMS, Tailwind CSS v4, TypeScript, pnpm
+  CMS: TinaCMS headless for content management (blog, pages, programs collections)
+  Design System: @cihubs/design-system as workspace dependency, CIHUBS blue palette (#203370)
+  Fonts (SSOT: design-system DESIGN.md quad-font): Poppins 700 headlines, Montserrat 400/700 body/CTAs, Work Sans 600 UI, Open Sans 400 content
+  UI: Flowbite vanilla (data-attributes + CDN JS), no React, no flowbite-react
+  Readability: component vocabulary (src/components/astro/) + semantic @layer classes, no loose utilities in pages
   Build: Astro build system with Vite
   Deployment: Static site hosting
 
