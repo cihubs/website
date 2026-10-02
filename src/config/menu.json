@@ -46,11 +46,15 @@
   ],
   "footer": [
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "Contáctenos",
+      "url": "/contact"
     },
     {
-      "name": "Privacy Policy",
+      "name": "Noticias",
+      "url": "/blog"
+    },
+    {
+      "name": "Política de privacidad",
       "url": "/privacy-policy"
     }
   ]

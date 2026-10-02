@@ -107,5 +107,108 @@ const { banner, features } = homepage.data;
   <!-- /Features -->
 
   <Testimonial testimonial={testimonial} />
+
+  <!-- Mission -->
+  <section id="our-mission" class="section bg-gradient">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto mb-12 text-center md:col-10 lg:col-8">
+          <h2 data-anim class="mb-4">
+            <strong>CIHubs</strong> es el mejor socio estratégico para dinamizar
+            ecosistemas de innovación
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-6 md:col-6 lg:col-3">
+          <div class="rounded-lg bg-body px-7 py-10 text-center dark:bg-darkmode-body">
+            <h3 class="h5 mb-3">
+              Transformamos zonas francas en Parques Científicos y Tecnológicos
+            </h3>
+          </div>
+        </div>
+        <div class="mb-6 md:col-6 lg:col-3">
+          <div class="rounded-lg bg-body px-7 py-10 text-center dark:bg-darkmode-body">
+            <h3 class="h5 mb-3">
+              Incorporamos cadenas de valor locales a cadenas de valor globales
+            </h3>
+          </div>
+        </div>
+        <div class="mb-6 md:col-6 lg:col-3">
+          <div class="rounded-lg bg-body px-7 py-10 text-center dark:bg-darkmode-body">
+            <h3 class="h5 mb-3">
+              Apoyamos la creación de ciudades científicas y tecnológicas en
+              gobiernos locales
+            </h3>
+          </div>
+        </div>
+        <div class="mb-6 md:col-6 lg:col-3">
+          <div class="rounded-lg bg-body px-7 py-10 text-center dark:bg-darkmode-body">
+            <h3 class="h5 mb-3">
+              Implementamos plataformas de comercialización para entidades
+              académicas y de investigación y desarrollo
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Mission -->
+
+  <!-- Clients -->
+  <section id="clientes" class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto mb-12 text-center md:col-10 lg:col-8">
+          <h2 data-anim class="mb-4">Clientes</h2>
+        </div>
+        <div class="col-12">
+          <div class="row items-center justify-center">
+            {
+              [
+                "micitt.png",
+                "tlo.png",
+                "tampere.png",
+                "saab.png",
+                "pluganplay.png",
+                "parquetec.png",
+                "cambridge.png",
+                "onevalley.png",
+                "establishmentlabs.png",
+                "madrid.png",
+                "cendana.png",
+                "cenat.png",
+                "wow.jpg",
+                "warkick.jpg",
+                "ucr.jpg",
+                "cinde.jpg",
+                "gaiker-1.jpg",
+                "crusa.jpg",
+                "azofras.jpg",
+                "rocket.jpg",
+                "tecnalia.jpg",
+                "coyol.jpg",
+                "singularity.jpg",
+              ].map((logo) => (
+                <div class="col-6 mb-8 text-center sm:col-4 lg:col-3">
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    width="250"
+                    height="100"
+                    src={withBase(`/images/clients/${logo}`)}
+                    alt={logo.replace(/\.(png|jpg)$/, "")}
+                    class="mx-auto"
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Clients -->
+
   <CallToAction call_to_action={call_to_action} />
 </Base>
