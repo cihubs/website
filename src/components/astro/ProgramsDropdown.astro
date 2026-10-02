@@ -1,0 +1,65 @@
+---
+import { withBase } from "@/lib/utils/withBase";
+
+interface Program {
+  title: string;
+  href: string;
+}
+
+interface Props {
+  programs?: Program[];
+  id?: string;
+}
+
+const {
+  programs = [
+    { title: "Soft Landing de Conocimiento e Innovación", href: "/programas/soft-landing-de-conocimiento-e-innovacion/" },
+    { title: "Potenciar Zonas Francas a High-Tech", href: "/programas/potenciar-zonas-francas-a-high-tech/" },
+    { title: "Encadenamientos Globales", href: "/programas/encadenamientos-globales/" },
+    { title: "Ciudades Científicas y Tecnológicas", href: "/programas/ciudades-cientificas-y-tecnologicas/" },
+    { title: "Brazo Comercial de Generadores de Conocimiento", href: "/programas/brazo-comercial-de-generadores-de-conocimiento/" },
+  ],
+  id = "programs-dropdown",
+} = Astro.props;
+
+const buttonId = `${id}-button`;
+const menuId = `${id}-menu`;
+---
+
+<div class="relative">
+  <button
+    id={buttonId}
+    data-dropdown-toggle={menuId}
+    data-dropdown-trigger="hover"
+    class="inline-flex items-center gap-2 rounded-lg bg-[#203370] px-4 py-2 font-medium text-white transition-colors hover:bg-[#2a4289] focus:outline-none focus:ring-4 focus:ring-blue-300"
+    style="font-family: 'Montserrat', sans-serif; font-weight: 500;"
+    type="button"
+  >
+    <span>Programas</span>
+    <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+    </svg>
+  </button>
+
+  <div
+    id={menuId}
+    class="z-50 hidden w-80 divide-y divide-gray-100 rounded-lg border border-gray-200 bg-white shadow-lg"
+  >
+    <div class="px-4 py-3 text-sm text-gray-500" style="font-family: 'Montserrat', sans-serif;">
+      CIHUBS Programs
+    </div>
+    <ul class="py-2" aria-labelledby={buttonId}>
+      {programs.map((program) => (
+        <li>
+          <a
+            href={withBase(program.href)}
+            class="block px-4 py-3 text-gray-700 transition-colors hover:bg-gray-50 hover:text-[#203370]"
+            style="font-family: 'Montserrat', sans-serif; font-weight: 400;"
+          >
+            {program.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

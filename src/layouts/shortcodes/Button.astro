@@ -1,0 +1,23 @@
+---
+import { withBase } from "@/lib/utils/withBase";
+
+interface Props {
+  label: string;
+  link: string;
+  style?: string;
+  rel?: string;
+}
+
+const { label, link, style, rel } = Astro.props;
+const target = link.startsWith("http") ? "_blank" : "_self";
+const relAttr = `noopener noreferrer ${rel ? (rel === "follow" ? "" : rel) : "nofollow"}`;
+---
+
+<a
+  href={withBase(link)}
+  target={target}
+  rel={relAttr}
+  class={`btn mb-4 me-4 hover:text-white dark:hover:text-black hover:no-underline ${style === "outline" ? "btn-outline-primary" : "btn-primary"}`}
+>
+  {label}
+</a>

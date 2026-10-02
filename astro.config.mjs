@@ -1,6 +1,6 @@
 import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import qwikdev from "@qwikdev/astro";
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
@@ -17,17 +17,17 @@ export default defineConfig({
   image: { service: sharp() },
   vite: { plugins: [tailwindcss()] },
   integrations: [
-    react(),
+    qwikdev(),
     sitemap(),
     AutoImport({
       imports: [
-        "@/shortcodes/Button",
-        "@/shortcodes/Accordion",
-        "@/shortcodes/Notice",
-        "@/shortcodes/Video",
-        "@/shortcodes/Youtube",
-        "@/shortcodes/Tabs",
-        "@/shortcodes/Tab",
+        "@/shortcodes/Button.astro",
+        "@/shortcodes/Accordion.astro",
+        "@/shortcodes/Notice.astro",
+        "@/shortcodes/Video.astro",
+        "@/shortcodes/Youtube.astro",
+        "@/shortcodes/Tabs.astro",
+        "@/shortcodes/Tab.astro",
       ],
     }),
     mdx(),

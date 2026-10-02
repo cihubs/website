@@ -1,13 +1,14 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
-import Disqus from "@/helpers/Disqus";
+import Giscus from "@/helpers/Giscus.astro";
+import Icon from "@/helpers/Icon.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
+import { withBase } from "@/lib/utils/withBase";
 import { render } from "astro:content";
-import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 
 const COLLECTION_FOLDER = "blog";
@@ -40,16 +41,16 @@ const { title, description, author, categories, image, date, tags } = post.data;
         <h1 set:html={markdownify(title)} class="h2 mb-4" />
         <ul class="mb-4">
           <li class="mr-4 inline-block">
-            <a href={`/authors/${slugify(author)}`}>
-              <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+            <a href={withBase(`/authors/${slugify(author)}`)}>
+              <Icon name="user" className="mr-2 -mt-1 inline-block" />
               {humanize(author)}
             </a>
           </li>
           <li class="mr-4 inline-block">
-            <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+            <Icon name="folder" className="mr-2 -mt-1 inline-block" />
             {
               categories.map((category: string, index: number) => (
-                <a href={`/categories/${slugify(category)}`}>
+                <a href={withBase(`/categories/${slugify(category)}`)}>
                   {humanize(category)}
                   {index !== categories.length - 1 && ","}
                 </a>
@@ -57,7 +58,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
             }
           </li>
           <li class="mr-4 inline-block">
-            <FaRegClock className={"mr-2 -mt-1 inline-block"} />
+            <Icon name="clock" className="mr-2 -mt-1 inline-block" />
             {dateFormat(date)}
           </li>
         </ul>
@@ -73,7 +74,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
                   <li class="inline-block">
                     <a
                       class="m-1 block rounded bg-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark"
-                      href={`/tags/${slugify(tag)}`}
+                      href={withBase(`/tags/${slugify(tag)}`)}
                     >
                       {humanize(tag)}
                     </a>
@@ -92,7 +93,7 @@ const { title, description, author, categories, image, date, tags } = post.data;
             />
           </div>
         </div>
-        <Disqus className="mt-20" client:load />
+        <Giscus />
       </article>
     </div>
 

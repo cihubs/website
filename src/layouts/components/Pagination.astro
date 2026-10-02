@@ -1,4 +1,6 @@
 ---
+import { withBase } from "@/lib/utils/withBase";
+
 type Pagination = {
   section?: string;
   currentPage?: number;
@@ -25,11 +27,11 @@ for (let i = 1; i <= totalPages; i++) {
       {/* previous */}
       {hasPrevPage ? (
         <a
-          href={
+          href={withBase(
             indexPageLink
               ? `${section ? "/" + section : "/"}`
-              : `${section ? "/" + section : ""}/page/${currentPage - 1}`
-          }
+              : `${section ? "/" + section : ""}/page/${currentPage - 1}`,
+          )}
           class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
         >
           <span class="sr-only">Previous</span>
@@ -77,11 +79,11 @@ for (let i = 1; i <= totalPages; i++) {
           </span>
         ) : (
           <a
-            href={
+            href={withBase(
               i === 0
                 ? `${section ? "/" + section : "/"}`
-                : `${section ? "/" + section : ""}/page/${pagination}`
-            }
+                : `${section ? "/" + section : ""}/page/${pagination}`,
+            )}
             aria-current="page"
             class="rounded px-4 py-2 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
           >
@@ -93,7 +95,9 @@ for (let i = 1; i <= totalPages; i++) {
       {/* next page */}
       {hasNextPage ? (
         <a
-          href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
+          href={withBase(
+            `${section ? "/" + section : ""}/page/${currentPage + 1}`,
+          )}
           class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
         >
           <span class="sr-only">Next</span>

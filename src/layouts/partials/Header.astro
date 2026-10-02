@@ -3,7 +3,9 @@ import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
-import { IoSearch } from "react-icons/io5";
+import Icon from "@/helpers/Icon.astro";
+import { withBase } from "@/lib/utils/withBase";
+import { withBase } from "@/lib/utils/withBase";
 
 export interface ChildNavigationLink {
   name: string;
@@ -63,9 +65,9 @@ const { pathname } = Astro.url;
                 <label
                   for={`submenu-${menu.name}`}
                   class={`nav-link inline-flex items-center ${
-                    menu.children?.map(({ url }) => url).includes(pathname) ||
+                    menu.children?.map(({ url }) => withBase(url)).includes(pathname) ||
                     menu.children
-                      ?.map(({ url }) => `${url}/`)
+                      ?.map(({ url }) => `${withBase(url)}/`)
                       .includes(pathname)
                       ? "active"
                       : ""
@@ -80,11 +82,11 @@ const { pathname } = Astro.url;
                   {menu.children?.map((child) => (
                     <li class="nav-dropdown-item">
                       <a
-                        href={child.url}
+                        href={withBase(child.url)}
                         aria-label={child.name}
                         class={`nav-dropdown-link block ${
-                          (pathname === `${child.url}/` ||
-                            pathname === child.url) &&
+                          (pathname === `${withBase(child.url)}/` ||
+                            pathname === withBase(child.url)) &&
                           "active"
                         }`}
                       >
@@ -97,9 +99,9 @@ const { pathname } = Astro.url;
             ) : (
               <li class="nav-item">
                 <a
-                  href={menu.url}
+                  href={withBase(menu.url)}
                   class={`nav-link block ${
-                    (pathname === `${menu.url}/` || pathname === menu.url) &&
+                    (pathname === `${withBase(menu.url)}/` || pathname === withBase(menu.url)) &&
                     "active"
                   }`}
                 >
@@ -115,7 +117,7 @@ const { pathname } = Astro.url;
           <li class="mt-4 inline-block lg:hidden">
             <a
               class="btn btn-outline-primary btn-sm"
-              href={navigation_button.link}
+              href={withBase(navigation_button.link)}
               target={
                 navigation_button.link.startsWith("http") ? "_blank" : "_self"
               }
@@ -135,7 +137,7 @@ const { pathname } = Astro.url;
             aria-label="search"
             data-search-trigger
           >
-            <IoSearch />
+            <Icon name="search" />
           </button>
         )
       }
@@ -144,7 +146,7 @@ const { pathname } = Astro.url;
         navigation_button.enable && (
           <a
             class="btn btn-outline-primary btn-sm hidden lg:inline-block"
-            href={navigation_button.link}
+            href={withBase(navigation_button.link)}
             target={
               navigation_button.link.startsWith("http") ? "_blank" : "_self"
             }

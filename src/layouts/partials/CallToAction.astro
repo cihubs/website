@@ -1,6 +1,7 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
 import { markdownify } from "@/lib/utils/textConverter";
+import { withBase } from "@/lib/utils/withBase";
 const { call_to_action } = Astro.props;
 ---
 
@@ -32,7 +33,7 @@ const { call_to_action } = Astro.props;
               {call_to_action.data.button.enable && (
                 <a
                   class="btn btn-primary"
-                  href={call_to_action.data.button.link}
+                  href={withBase(call_to_action.data.button.link)}
                 >
                   {call_to_action.data.button.label}
                 </a>

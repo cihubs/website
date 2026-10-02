@@ -1,5 +1,6 @@
 ---
 import { plainify } from "@/lib/utils/textConverter";
+import { withBase } from "@/lib/utils/withBase";
 import ImageMod from "./ImageMod.astro";
 import Social from "./Social.astro";
 
@@ -21,7 +22,7 @@ const { title, image, social } = data.data;
     )
   }
   <h4 class="mb-3">
-    <a href={`/authors/${data.id}`}>{title}</a>
+    <a href={withBase(`/authors/${data.id}`)}>{title}</a>
   </h4>
   <p class="mb-4">
     {plainify(data.body?.slice(0, 100))}

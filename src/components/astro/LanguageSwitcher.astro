@@ -1,0 +1,43 @@
+---
+interface Props {
+  current?: "es" | "en";
+  id?: string;
+}
+
+const { current = "es", id = "lang-switcher" } = Astro.props;
+const buttonId = `${id}-button`;
+const menuId = `${id}-menu`;
+---
+
+<div class="relative">
+  <button
+    id={buttonId}
+    data-dropdown-toggle={menuId}
+    class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 focus:outline-none"
+    style="font-family: 'Montserrat', sans-serif;"
+    type="button"
+  >
+    <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0c2.76 0 3-1.5 3-9S14.76 3 12 3s-3 1.5-3 9 1.24 9 3 9Zm-5.4-18C4.9 4.5 4 6.1 4 12s.9 7.5 2.6 9M18.6 3C20.1 4.5 21 6.1 21 12s-.9 7.5-2.6 9M4 8h16m-16 8h16" />
+    </svg>
+    <span class="uppercase">{current}</span>
+    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+    </svg>
+  </button>
+
+  <div id={menuId} class="z-50 hidden w-32 rounded-lg border border-gray-200 bg-white shadow-lg">
+    <ul class="py-2 text-sm text-gray-700" aria-labelledby={buttonId}>
+      <li>
+        <a href="#" data-lang="es" class={`block px-4 py-2 hover:bg-gray-100 ${current === "es" ? "font-bold text-[#203370]" : ""}`}>
+          ES — Español
+        </a>
+      </li>
+      <li>
+        <a href="#" data-lang="en" class={`block px-4 py-2 hover:bg-gray-100 ${current === "en" ? "font-bold text-[#203370]" : ""}`}>
+          EN — English
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

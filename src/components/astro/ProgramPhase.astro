@@ -1,0 +1,75 @@
+---
+import { withBase } from "@/lib/utils/withBase";
+
+interface Props {
+  title: string;
+  duration?: string;
+  content: string;
+  link?: string;
+  linkLabel?: string;
+  open?: boolean;
+  accordionId?: string;
+}
+
+const {
+  title,
+  duration,
+  content,
+  link,
+  linkLabel = "Ver más",
+  open = false,
+  accordionId = "program-phases",
+} = Astro.props;
+
+const headingId = `${accordionId}-heading-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+const bodyId = `${accordionId}-body-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+---
+
+<div class="mb-8 rounded-lg border border-gray-200 bg-white shadow-sm">
+  <div id={accordionId} data-accordion="collapse" data-active-classes="bg-gray-50">
+    <h3 id={headingId}>
+      <button
+        type="button"
+        class="flex w-full items-center justify-between gap-3 p-6 font-medium text-gray-700"
+        data-accordion-target={`#${bodyId}`}
+        aria-expanded={open ? "true" : "false"}
+        aria-controls={bodyId}
+      >
+        <span class="text-left text-2xl font-bold text-[#203370]" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
+          {title}
+        </span>
+        <span class="flex shrink-0 items-center gap-3">
+          {duration && (
+            <span class="text-sm font-normal text-gray-600" style="font-family: 'Montserrat', sans-serif;">
+              {duration}
+            </span>
+          )}
+          <svg data-accordion-icon class="h-4 w-4 shrink-0 rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+          </svg>
+        </span>
+      </button>
+    </h3>
+    <div id={bodyId} class={open ? "" : "hidden"} aria-labelledby={headingId}>
+      <div class="border-t border-gray-200 p-6">
+        <div
+          class="prose prose-sm mb-4 max-w-none text-gray-700"
+          style="font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.6;"
+          set:html={content}
+        />
+        {link && (
+          <a
+            href={withBase(link)}
+            class="inline-flex items-center gap-2 rounded-lg bg-[#203370] px-6 py-3 text-center font-bold text-white transition-colors hover:bg-[#2a4289] focus:ring-4 focus:ring-blue-300 focus:outline-none"
+            style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 0.0625rem;"
+          >
+            {linkLabel}
+            <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+            </svg>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</div>

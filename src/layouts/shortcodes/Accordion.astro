@@ -1,0 +1,12 @@
+---
+import { Accordion } from "@/qwik/Accordion";
+
+interface Props {
+  title: string;
+  className?: string;
+}
+
+const { title, className } = Astro.props;
+---
+
+<Accordion title={title} className={className}><slot /></Accordion>

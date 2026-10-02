@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  content: string;
+  items?: string[];
+}
+
+const { title, content, items = [] } = Astro.props;
+---
+
+<div class="mb-6 block max-w-full rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+  <h4 class="mb-3 text-xl font-bold text-[#203370]" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
+    {title}
+  </h4>
+  <div
+    class="mb-4 text-gray-700"
+    style="font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.6;"
+    set:html={content}
+  />
+  {items.length > 0 && (
+    <ul class="w-full divide-y divide-gray-200 rounded-lg border border-gray-200 text-sm font-medium text-gray-700">
+      {items.map((item) => (
+        <li class="flex w-full items-center gap-2 rounded-t-lg px-4 py-3">
+          <svg class="h-4 w-4 shrink-0 text-[#203370]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 17.5 4.5 12 18l-4-6-3 1Z" />
+          </svg>
+          <span style="font-family: 'Montserrat', sans-serif;">{item}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
