@@ -1,0 +1,11 @@
+---
+import ProgramSingle from "@/layouts/ProgramSingle.astro";
+import { getEntry } from "astro:content";
+
+const program = await getEntry("programs", "ciudades-cientificas");
+if (!program) {
+  throw new Error("Program not found: ciudades-cientificas");
+}
+---
+
+<ProgramSingle program={program} />

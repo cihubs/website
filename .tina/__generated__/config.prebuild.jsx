@@ -162,6 +162,94 @@ var config_default = defineConfig({
             isBody: true
           }
         ]
+      },
+      {
+        name: "programs",
+        label: "Programs",
+        path: "src/content/programs",
+        format: "md",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true
+          },
+          {
+            type: "string",
+            name: "subtitle",
+            label: "Subtitle"
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description"
+          },
+          {
+            type: "object",
+            name: "phases",
+            label: "Phases",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Title"
+              },
+              {
+                type: "string",
+                name: "duration",
+                label: "Duration"
+              },
+              {
+                type: "string",
+                name: "link",
+                label: "Link"
+              },
+              {
+                type: "string",
+                name: "content",
+                label: "Content"
+              }
+            ]
+          },
+          {
+            type: "object",
+            name: "components",
+            label: "Components",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Title"
+              },
+              {
+                type: "string",
+                name: "content",
+                label: "Content"
+              },
+              {
+                type: "string",
+                name: "list",
+                label: "List (markdown)"
+              },
+              {
+                type: "string",
+                name: "items",
+                label: "Items",
+                list: true
+              }
+            ]
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true
+          }
+        ]
       }
     ]
   }

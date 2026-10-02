@@ -1,0 +1,11 @@
+---
+import ProgramSingle from "@/layouts/ProgramSingle.astro";
+import { getEntry } from "astro:content";
+
+const program = await getEntry("programs", "cadenas-globales");
+if (!program) {
+  throw new Error("Program not found: cadenas-globales");
+}
+---
+
+<ProgramSingle program={program} />

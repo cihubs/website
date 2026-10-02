@@ -70,6 +70,39 @@ const contactCollection = defineCollection({
   }),
 });
 
+// Programs collection schema (src/content submodule: content/programs/)
+// 5 programs + Discovery + Inmersión. Root-level SEO slugs live in the
+// page filenames (src/pages/<slug>.astro); entries are looked up by the
+// short submodule filename via getEntry("programs", "<id>").
+const programsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/programs" }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    description: z.string().optional(),
+    phases: z
+      .array(
+        z.object({
+          title: z.string(),
+          duration: z.string().optional(),
+          link: z.string().optional(),
+          content: z.string(),
+        }),
+      )
+      .optional(),
+    components: z
+      .array(
+        z.object({
+          title: z.string(),
+          content: z.string(),
+          list: z.string().optional(),
+          items: z.array(z.string()).optional(),
+        }),
+      )
+      .optional(),
+  }),
+});
+
 // Homepage collection schema
 const homepageCollection = defineCollection({
   loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/homepage" }),
@@ -149,6 +182,7 @@ export const collections = {
   pages: pagesCollection,
   about: aboutCollection,
   contact: contactCollection,
+  programs: programsCollection,
 
   // sections
   ctaSection: ctaSectionCollection,

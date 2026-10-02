@@ -1,0 +1,11 @@
+---
+import ProgramSingle from "@/layouts/ProgramSingle.astro";
+import { getEntry } from "astro:content";
+
+const program = await getEntry("programs", "zonas-francas");
+if (!program) {
+  throw new Error("Program not found: zonas-francas");
+}
+---
+
+<ProgramSingle program={program} />
