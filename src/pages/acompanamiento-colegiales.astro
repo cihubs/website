@@ -25,13 +25,20 @@ const pasos = [
 ];
 
 const acompanamiento = [
-  { top: "Qué problema resuelves", sub: "En qué negocio estás" },
-  { top: "Tu digital twin startup", sub: "Tu propuesta de valor" },
-  { top: "Tu perfil corporativo", sub: "El perfil de tu equipo" },
-  { top: "El impacto de la IA en tu solución", sub: "Tu Minimum Evolvable Product" },
-  { top: "Tu pitch de ventas", sub: "Tu Client Business Case" },
-  { top: "Tu frase diferenciadora", sub: "Tu Live Demo" },
-  { top: "Retroalimentación de expertos", sub: "Selección del road show internacional" },
+  { text: "Qué problema resuelves", main: true },
+  { text: "Tu digital twin startup", main: true },
+  { text: "Tu perfil corporativo", main: true },
+  { text: "El impacto de la IA en tu solución", main: true },
+  { text: "Tu pitch de ventas", main: true },
+  { text: "Tu frase diferenciadora", main: true },
+  { text: "Retroalimentación de expertos", main: true },
+  { text: "En qué negocio estás", main: false },
+  { text: "Tu propuesta de valor", main: false },
+  { text: "El perfil de tu equipo", main: false },
+  { text: "Tu Minimum Evolvable Product", main: false },
+  { text: "Tu Client Business Case", main: false },
+  { text: "Tu Live Demo", main: false },
+  { text: "Selección del road show internacional", main: false },
 ];
 
 const faqs = [
@@ -94,7 +101,7 @@ const faqs = [
       <div class="row justify-center">
         <div class="md:col-9 text-center lg:col-7">
           <h2 data-anim class="mb-4">
-            Las buenas ideas de negocio mueren por falta de seguimiento
+            Las buenas ideas de negocio <span class="text-[#722031]">mueren por falta de seguimiento</span>
           </h2>
           <p data-anim class="mb-8 text-lg">
             Si no estás resolviendo un verdadero problema social, y no tenés
@@ -162,14 +169,15 @@ const faqs = [
       <h2 data-anim class="mb-4 text-center">
         Qué incluye el acompañamiento
       </h2>
-      <div class="row">
+      <div class="grid grid-cols-2 gap-6 md:grid-cols-4 xl:grid-cols-7">
         {
           acompanamiento.map((item) => (
-            <div class="md:col-6 lg:col-4 mb-6">
-              <div class="h-full rounded-xl bg-[#2a4289] p-6 text-white">
-                <h3 data-anim class="mb-2 text-white">{item.top}</h3>
-                <p class="text-[#f7f9fc]">{item.sub}</p>
-              </div>
+            <div class="rounded-xl border-t-8 border-[#4a6fa5] bg-[#2a4289] p-6 text-white">
+              {item.main ? (
+                <h3 data-anim class="text-white">{item.text}</h3>
+              ) : (
+                <p class="text-[#f7f9fc]">{item.text}</p>
+              )}
             </div>
           ))
         }
