@@ -36,7 +36,7 @@ if (aboutIndex.data.draft) {
               />
             )
           }
-          <h2 set:html={markdownify(title)} class="h3 mb-6" />
+          <h2 data-anim set:html={markdownify(title)} class="h3 mb-6" />
           <div class="content">
             <Content />
           </div>

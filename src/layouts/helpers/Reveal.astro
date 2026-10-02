@@ -1,0 +1,61 @@
+---
+// Scroll-reveal partial (website analog of the HyperFrames deck entrances).
+// Same attribute contract as the deck (`data-anim`) and same entrance primitive
+// (gsap.from opacity/y + stagger), but scroll-driven via ScrollTrigger instead
+// of the deck's player-seeked timeline. Uses gsap.from only, so content stays
+// fully visible with JS disabled or the CDN blocked. Qwik islands are never
+// targeted: only static Astro markup carries `data-anim`.
+---
+
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"
+></script>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"
+></script>
+<script is:inline>
+  (function () {
+    // ClientRouter re-executes body scripts on every swap: register once.
+    if (window.__cihubsRevealInit) return;
+    window.__cihubsRevealInit = true;
+
+    function setupReveals() {
+      // CDN blocked or failed: leave content visible, do nothing.
+      if (!window.gsap || !window.ScrollTrigger) return;
+      // Reduced motion: final state is the natural (visible) state.
+      if (
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      )
+        return;
+      var gsap = window.gsap;
+      gsap.registerPlugin(window.ScrollTrigger);
+      // Drop triggers bound to the previous DOM after a ClientRouter swap.
+      window.ScrollTrigger.getAll().forEach(function (st) {
+        st.kill();
+      });
+      gsap.set("[data-anim]", { clearProps: "all" });
+      // Batched once-only reveals; in-view blocks play on load.
+      window.ScrollTrigger.batch("[data-anim]", {
+        start: "top 92%",
+        once: true,
+        onEnter: function (batch) {
+          gsap.from(batch, {
+            opacity: 0,
+            y: 28,
+            duration: 0.5,
+            stagger: 0.08,
+            ease: "power2.out",
+            overwrite: true,
+            clearProps: "opacity,transform",
+          });
+        },
+      });
+      window.ScrollTrigger.refresh();
+    }
+
+    // Fires on initial load and after every ClientRouter swap.
+    document.addEventListener("astro:page-load", setupReveals);
+  })();
+</script>

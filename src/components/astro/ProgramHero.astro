@@ -15,17 +15,18 @@ const { title, subtitle, description, ctaLabel = "VER MÁS", ctaHref = "#cihubs_
 <section class="bg-white">
   <div class="mx-auto max-w-6xl px-4 py-20 text-center lg:py-24">
     {subtitle && (
-      <p class="mb-4 text-xl font-normal tracking-widest text-blue-700 uppercase" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 0.125rem;">
+      <p data-anim class="mb-4 text-xl font-normal tracking-widest text-blue-700 uppercase" style="font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 0.125rem;">
         {subtitle}
       </p>
     )}
-    <h1 class="mb-6 text-4xl leading-tight font-bold text-[#203370] md:text-5xl" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
+    <h1 data-anim class="mb-6 text-4xl leading-tight font-bold text-[#203370] md:text-5xl" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
       {title}
     </h1>
-    <p class="mx-auto mb-8 max-w-3xl text-lg text-gray-700" style="font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.6;">
+    <p data-anim class="mx-auto mb-8 max-w-3xl text-lg text-gray-700" style="font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.6;">
       {description}
     </p>
     <a
+      data-anim
       href={withBase(ctaHref)}
       class="inline-flex items-center gap-2 rounded-lg bg-[#203370] px-8 py-4 text-center font-bold text-white transition-colors hover:bg-[#2a4289] focus:ring-4 focus:ring-blue-300 focus:outline-none"
       style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 0.0625rem;"

@@ -23,13 +23,14 @@ const {
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8v8a5 5 0 0 0 10 0V8a5 5 0 0 0-10 0Zm4-3v3h2V5a2 2 0 1 0-4 0v2h2Zm0 0V3m0 16v2m8-8h2m-2-4h2m-2 8h2M5 8H3m2 4H3m2 4H3" />
       </svg>
     </div>
-    <h2 class="mb-6 text-3xl font-bold text-[#203370]" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
+    <h2 data-anim class="mb-6 text-3xl font-bold text-[#203370]" style="font-family: 'Poppins', sans-serif; font-weight: 700;">
       {title}
     </h2>
-    <p class="mb-8 text-lg text-gray-700" style="font-family: 'Montserrat', sans-serif; font-weight: 400;">
+    <p data-anim class="mb-8 text-lg text-gray-700" style="font-family: 'Montserrat', sans-serif; font-weight: 400;">
       {subtitle}
     </p>
     <a
+      data-anim
       href={withBase(contactLink)}
       class="inline-flex items-center gap-2 rounded-lg bg-[#203370] px-8 py-4 text-center font-bold text-white transition-colors hover:bg-[#2a4289] focus:ring-4 focus:ring-blue-300 focus:outline-none"
       style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 0.0625rem;"
