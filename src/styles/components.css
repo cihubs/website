@@ -181,3 +181,21 @@
     background-attachment: scroll;
   }
 }
+
+/* Neon image treatment (CIHUBS accents: tertiary glow, gold glow on dark) */
+.img-neon {
+  border-radius: 1rem;
+  box-shadow: 0 0 28px rgba(74, 111, 165, 0.45);
+}
+.img-neon-gold {
+  border-radius: 1rem;
+  box-shadow: 0 0 32px rgba(254, 197, 3, 0.4);
+}
+.logo-card {
+  box-shadow: 0 0 24px rgba(74, 111, 165, 0.35);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.logo-card:hover {
+  box-shadow: 0 0 36px rgba(74, 111, 165, 0.55);
+  transform: translateY(-4px);
+}

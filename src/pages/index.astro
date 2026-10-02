@@ -80,6 +80,7 @@ const { banner, features } = homepage.data;
                 width={520}
                 alt={feature.title}
                 format="webp"
+                class="img-neon"
               />
             </div>
             <div class={`md:col-7 lg:col-6 ${index % 2 !== 0 && "md:order-1"}`}>
@@ -106,7 +107,8 @@ const { banner, features } = homepage.data;
   }
   <!-- /Features -->
 
-  <Testimonial testimonial={testimonial} />
+  {/* <Testimonial testimonial={testimonial} /> testimonios ocultos temporalmente */}
+  <!-- /Testimonial (hidden) -->
 
   <!-- Mission -->
   <section id="our-mission" class="section bg-gradient">
@@ -155,12 +157,12 @@ const { banner, features } = homepage.data;
   </section>
   <!-- /Mission -->
 
-  <!-- Clients -->
-  <section id="clientes" class="section-sm">
+  <!-- Aliados -->
+  <section id="aliados" class="section-sm">
     <div class="container">
       <div class="row">
         <div class="mx-auto mb-12 text-center md:col-10 lg:col-8">
-          <h2 data-anim class="mb-4">Clientes</h2>
+          <h2 data-anim class="mb-4">Aliados</h2>
         </div>
         <div class="col-12">
           <div class="row items-center justify-center">
@@ -191,15 +193,17 @@ const { banner, features } = homepage.data;
                 "singularity.jpg",
               ].map((logo) => (
                 <div class="col-6 mb-8 text-center sm:col-4 lg:col-3">
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    width="250"
-                    height="100"
-                    src={withBase(`/images/clients/${logo}`)}
-                    alt={logo.replace(/\.(png|jpg)$/, "")}
-                    class="mx-auto"
-                  />
+                  <div class="logo-card mx-auto rounded-2xl bg-white p-4">
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      width="250"
+                      height="100"
+                      src={withBase(`/images/clients/${logo}`)}
+                      alt={logo.replace(/\.(png|jpg)$/, "")}
+                      class="mx-auto rounded-xl"
+                    />
+                  </div>
                 </div>
               ))
             }
@@ -208,7 +212,7 @@ const { banner, features } = homepage.data;
       </div>
     </div>
   </section>
-  <!-- /Clients -->
+  <!-- /Aliados -->
 
   <CallToAction call_to_action={call_to_action} />
 </Base>
