@@ -1,6 +1,6 @@
 ---
 interface Props {
-  name: "search" | "user" | "folder" | "clock" | "check";
+  name: "search" | "user" | "folder" | "clock" | "check" | "chevron-down" | "plus";
   className?: string;
 }
 
@@ -31,5 +31,15 @@ const cls = `feather-icon ${className ?? ""}`;
 { name === "check" && (
   <svg class={cls} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <polyline points="20 6 9 17 4 12" />
+  </svg>
+)}
+{ name === "chevron-down" && (
+  <svg class={cls} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="m19 9-7 7-7-7" />
+  </svg>
+)}
+{ name === "plus" && (
+  <svg class={cls} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M5 12h14m-7-7v14" />
   </svg>
 )}

@@ -1,0 +1,240 @@
+---
+import Icon from "@/helpers/Icon.astro";
+import Base from "@/layouts/Base.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import ProgramCTA from "@/components/astro/ProgramCTA.astro";
+import ProgramHero from "@/components/astro/ProgramHero.astro";
+
+const title = "Tu futuro como emprendedor en tecnología";
+const description =
+  "De la idea de negocio de hoy, a la empresa tecnológica de mañana. Para estudiantes de Colegios Técnicos Profesionales y Colegios Científicos.";
+
+const pasos = [
+  {
+    title: "Problema de mercado",
+    desc: "Una necesidad real que alguien **desee pagar** por resolver.",
+  },
+  {
+    title: "Diferenciador tecnológico",
+    desc: "Algo que la competencia no copie en un fin de semana.",
+  },
+  {
+    title: "Producto y servicio",
+    desc: "**Posicionar** la solución que el mercado **acepte**.",
+  },
+];
+
+const acompanamiento = [
+  { top: "Qué problema resuelves", sub: "En qué negocio estás" },
+  { top: "Tu digital twin startup", sub: "Tu propuesta de valor" },
+  { top: "Tu perfil corporativo", sub: "El perfil de tu equipo" },
+  { top: "El impacto de la IA en tu solución", sub: "Tu Minimum Evolvable Product" },
+  { top: "Tu pitch de ventas", sub: "Tu Client Business Case" },
+  { top: "Tu frase diferenciadora", sub: "Tu Live Demo" },
+  { top: "Retroalimentación de expertos", sub: "Selección del road show internacional" },
+  { top: "Discovery", sub: "Etapa I · 3 meses · Innovation Tours y bootcamps" },
+  { top: "Inmersión", sub: "Etapa II · por resultados · clientes, talento y capital" },
+];
+
+const faqs = [
+  {
+    q: "¿Necesito tener una empresa para participar?",
+    a: "No. Basta tu proyecto de colegio: si llegaste hasta aquí, ya tienes la semilla.",
+  },
+  {
+    q: "¿Qué es Discovery?",
+    a: "La Etapa I del acompañamiento: 3 meses para conocer la red global de CIHUBS, con Innovation Tours y bootcamps certificados.",
+  },
+  {
+    q: "¿Y la Inmersión?",
+    a: "La Etapa II: crecer con aliados internacionales — nuevos clientes y mercados, talento especializado y capital. Se trabaja por resultados.",
+  },
+  {
+    q: "¿Cuánto cuesta?",
+    a: "Escríbenos a juanignacio@cihubs.com y te contamos el esquema de cada etapa sin compromiso.",
+  },
+  {
+    q: "¿Qué llevo a la ExpoTécnica?",
+    a: "Tu proyecto y tus preguntas. Nos vemos en la próxima Expo Técnica.",
+  },
+  {
+    q: "¿Es solo para colegios técnicos?",
+    a: "No: es para estudiantes de Colegios Técnicos Profesionales y Colegios Científicos. Si eres de otro colegio, escríbenos igual: la ruta es la misma.",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <style>
+    .faq-chevron { transition: transform 0.3s ease; }
+    [aria-expanded="true"] .faq-chevron { transform: rotate(180deg); }
+  </style>
+  <!-- Hero -->
+  <ProgramHero
+    title="Tu futuro como emprendedor en tecnología"
+    subtitle="Para estudiantes de Colegios Técnicos Profesionales y Colegios Científicos"
+    description="De la idea de negocio de hoy, a la empresa tecnológica de mañana."
+    ctaLabel="Conversemos"
+    ctaHref="mailto:juanignacio@cihubs.com"
+  />
+
+  <!-- Mantra 1 -->
+  <section class="section-sm">
+    <div class="container text-center">
+      <h2 data-anim class="mx-auto max-w-3xl">
+        Tu proyecto de colegio ya es una semilla de empresa.
+      </h2>
+    </div>
+  </section>
+
+  <!-- Problema / Solución -->
+  <section class="section-sm bg-gradient">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-9 text-center lg:col-7">
+          <h2 data-anim class="mb-4">
+            Las buenas ideas de negocio mueren por falta de seguimiento
+          </h2>
+          <p data-anim class="mb-8 text-lg">
+            Si no estás resolviendo un verdadero problema social, y no tenés
+            un diferenciador de base tecnológica, ni el mejor proyecto despega.
+            La pregunta no debe ser si eres capaz — si llegaste hasta aquí, es
+            porque ya sabemos que sí lo eres. La pregunta correcta es: ¿sabés
+            cómo lograr hacerlo una realidad?
+          </p>
+          <a data-anim class="btn btn-primary" href="#ruta">
+            Ver la ruta
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quién es -->
+  <section class="section-sm">
+    <div class="container">
+      <h2 data-anim class="mb-8 text-center">¿Es esto para ti?</h2>
+      <div class="row justify-center">
+        <div class="md:col-4 mb-6">
+          <p class="text-lg">Tienes una idea o un proyecto de colegio.</p>
+        </div>
+        <div class="md:col-4 mb-6">
+          <p class="text-lg">Quieres llevarlo más allá de la feria.</p>
+        </div>
+        <div class="md:col-4 mb-6">
+          <p class="text-lg">Estudias en un colegio técnico o científico.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso: la ruta en 3 pasos -->
+  <section id="ruta" class="section-sm bg-gradient">
+    <div class="container">
+      <p data-anim class="mb-2 text-center font-semibold uppercase tracking-widest">
+        Nuestra metodología
+      </p>
+      <h2 data-anim class="mb-12 text-center">
+        Problema, Diferenciador, y Producto
+      </h2>
+      <div class="row justify-center">
+        {
+          pasos.map((paso) => (
+            <div class="md:col-4 mb-6">
+              <div class="rounded-xl border border-border bg-body p-8 dark:border-darkmode-border dark:bg-darkmode-body">
+                <h3 data-anim class="mb-3">{paso.title}</h3>
+                <p set:html={markdownify(paso.desc)} />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Acompañamiento: 14 elementos -->
+  <section class="section-sm">
+    <div class="container">
+      <p data-anim class="mb-2 text-center font-semibold uppercase tracking-widest">
+        Etapa I - Discovery
+      </p>
+      <h2 data-anim class="mb-4 text-center">
+        Qué incluye el acompañamiento
+      </h2>
+      <div class="row">
+        {
+          acompanamiento.map((item) => (
+            <div class="md:col-6 lg:col-4 mb-6">
+              <div class="h-full rounded-xl bg-[#2a4289] p-6 text-white">
+                <h3 data-anim class="mb-2 text-white">{item.top}</h3>
+                <p class="text-[#f7f9fc]">{item.sub}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Mantra 2 -->
+  <section class="section-sm bg-gradient">
+    <div class="container text-center">
+      <h2 data-anim class="mx-auto max-w-3xl">
+        De la idea de negocio de hoy, a la empresa tecnológica de mañana.
+      </h2>
+    </div>
+  </section>
+
+  <!-- Prueba social real (sin cifras inventadas) -->
+  <section class="section-sm">
+    <div class="container text-center">
+      <h2 data-anim class="mb-4">¿Dónde ocurre?</h2>
+      <p data-anim class="mx-auto max-w-2xl text-lg">
+        Colegio Técnico Profesional de Guararí · Universidad Invenio, Cañas ·
+        Red global CIHUBS (<a class="underline" href="https://cihubs.com/programas/">cihubs.com/programas</a>)
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-sm bg-gradient">
+    <div class="container">
+      <h2 data-anim class="mb-8 text-center">Preguntas frecuentes</h2>
+      <div class="row justify-center">
+        <div class="md:col-8">
+          <div data-accordion="collapse">
+            {
+              faqs.map((faq, i) => (
+                <>
+                  <h3 id={`faq-heading-${i}`}>
+                    <button
+                      type="button"
+                      class="flex w-full items-center justify-between gap-3 border-b border-border py-5 text-left font-medium dark:border-darkmode-border"
+                      data-accordion-target={`#faq-body-${i}`}
+                      aria-expanded={i === 0 ? "true" : "false"}
+                      aria-controls={`faq-body-${i}`}
+                    >
+                      <span>{faq.q}</span>
+                      <Icon name="chevron-down" className="faq-chevron shrink-0" />
+                    </button>
+                  </h3>
+                  <div id={`faq-body-${i}`} aria-labelledby={`faq-heading-${i}`} class={i !== 0 ? "hidden" : ""}>
+                    <p class="py-5">{faq.a}</p>
+                  </div>
+                </>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <ProgramCTA
+    contactLink="mailto:juanignacio@cihubs.com"
+    title="Nos vemos en la próxima Expo Técnica"
+    subtitle="Conversemos hoy"
+    ctaLabel="Conversemos"
+  />
+</Base>
