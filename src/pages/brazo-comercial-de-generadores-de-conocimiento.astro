@@ -1,0 +1,11 @@
+---
+import ProgramSingle from "@/layouts/ProgramSingle.astro";
+import { getEntry } from "astro:content";
+
+const program = await getEntry("programs", "brazo-comercial");
+if (!program) {
+  throw new Error("Program not found: brazo-comercial");
+}
+---
+
+<ProgramSingle program={program} />

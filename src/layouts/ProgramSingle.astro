@@ -1,0 +1,83 @@
+---
+import ProgramCTA from "@/components/astro/ProgramCTA.astro";
+import ProgramComponent from "@/components/astro/ProgramComponent.astro";
+import ProgramHero from "@/components/astro/ProgramHero.astro";
+import ProgramPhase from "@/components/astro/ProgramPhase.astro";
+import Base from "@/layouts/Base.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { render, type CollectionEntry } from "astro:content";
+
+interface Props {
+  program: CollectionEntry<"programs">;
+}
+
+const { program } = Astro.props;
+const { title, subtitle, description, phases, components } = program.data;
+const { Content } = await render(program);
+const heroDescription = description ?? subtitle ?? title;
+---
+
+<Base title={title} description={subtitle ?? description}>
+  <ProgramHero title={title} subtitle={subtitle} description={heroDescription} />
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-4 pb-4">
+      {
+        description && (
+          <div
+            data-anim
+            class="prose max-w-none text-gray-700"
+            style="font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.6;"
+            set:html={markdownify(description, true)}
+          />
+        )
+      }
+      <div
+        data-anim
+        class="content prose max-w-none text-gray-700"
+        style="font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.6;"
+      >
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  {
+    phases && phases.length > 0 && (
+      <section class="bg-white">
+        <div class="mx-auto max-w-6xl px-4 py-8">
+          {phases.map((phase, i) => (
+            <ProgramPhase
+              title={phase.title}
+              duration={phase.duration}
+              content={markdownify(phase.content, true) as string}
+              link={phase.link}
+              linkLabel="Ver más"
+              open={i === 0}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    components && components.length > 0 && (
+      <section class="bg-gray-50">
+        <div class="mx-auto max-w-6xl px-4 py-16">
+          {components.map((component) => (
+            <ProgramComponent
+              title={component.title}
+              content={
+                `${markdownify(component.content, true)}${component.list ? markdownify(component.list, true) : ""}` as string
+              }
+              items={component.items ?? []}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

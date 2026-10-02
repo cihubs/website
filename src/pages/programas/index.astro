@@ -1,0 +1,91 @@
+---
+import ProgramCTA from "@/components/astro/ProgramCTA.astro";
+import ProgramHero from "@/components/astro/ProgramHero.astro";
+import Base from "@/layouts/Base.astro";
+import { withBase } from "@/lib/utils/withBase";
+
+const title = "Programas";
+const description =
+  "Cinco programas para dinamizar ecosistemas de innovación: del soft landing de pymes tecnológicas a parques científicos, cadenas globales, ciudades científicas y el brazo comercial del conocimiento.";
+
+const programs = [
+  {
+    n: "Programa 1",
+    title: "Soft Landing de Conocimiento e Innovación",
+    desc: "Apoyamos a las pymes de base tecnológica a crecer y conquistar nuevos mercados.",
+    href: "/soft-landing-de-conocimiento-e-innovacion/",
+  },
+  {
+    n: "Programa 2",
+    title: "Zonas Francas – Parques Científicos y Tecnológicos",
+    desc: "Fortalecimiento de zonas francas para que operen como Parques Científicos y Tecnológicos.",
+    href: "/potenciar-zonas-francas-a-high-tech/",
+  },
+  {
+    n: "Programa 3",
+    title: "Cadenas de valor globales",
+    desc: "Creamos cadenas de valor nacionales e internacionales de empresas dentro y fuera de zonas francas.",
+    href: "/encadenamientos-globales/",
+  },
+  {
+    n: "Programa 4",
+    title: "Ciudades Científicas y Tecnológicas",
+    desc: "Conversión de municipios hacia ciudades científicas y tecnológicas.",
+    href: "/ciudades-cientificas-y-tecnologicas/",
+  },
+  {
+    n: "Programa 5",
+    title: "Brazo comercial para centros generadores de conocimiento",
+    desc: "Crear vínculos para que se transfiera tecnología y conocimiento.",
+    href: "/brazo-comercial-de-generadores-de-conocimiento/",
+  },
+];
+---
+
+<Base title={title} description={description}>
+  <ProgramHero title={title} subtitle="CIHUBS" description={description} />
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-4 pb-20">
+      <div class="grid gap-6 md:grid-cols-2">
+        {programs.map((program) => (
+          <div
+            data-anim
+            class="flex flex-col rounded-lg border border-gray-200 bg-white p-6 shadow-sm"
+          >
+            <p
+              class="mb-2 text-sm font-normal tracking-widest text-blue-700 uppercase"
+              style="font-family: 'Montserrat', sans-serif;"
+            >
+              {program.n}
+            </p>
+            <h2
+              class="mb-3 text-2xl font-bold text-[#203370]"
+              style="font-family: 'Poppins', sans-serif; font-weight: 700;"
+            >
+              {program.title}
+            </h2>
+            <p
+              class="mb-6 grow text-gray-700"
+              style="font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.6;"
+            >
+              {program.desc}
+            </p>
+            <a
+              href={withBase(program.href)}
+              class="inline-flex w-fit items-center gap-2 rounded-lg bg-[#203370] px-6 py-3 text-center font-bold text-white transition-colors hover:bg-[#2a4289] focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 0.0625rem;"
+            >
+              VER MÁS
+              <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProgramCTA contactLink="/contact" />
+</Base>

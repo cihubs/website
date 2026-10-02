@@ -35,3 +35,25 @@ fragment PagesParts on Pages {
   draft
   body
 }
+
+fragment ProgramsParts on Programs {
+  __typename
+  title
+  subtitle
+  description
+  phases {
+    __typename
+    title
+    duration
+    link
+    content
+  }
+  components {
+    __typename
+    title
+    content
+    list
+    items
+  }
+  body
+}
