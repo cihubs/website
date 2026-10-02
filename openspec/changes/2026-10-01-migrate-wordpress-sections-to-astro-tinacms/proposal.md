@@ -12,7 +12,7 @@ The current CIHUBS website runs on WordPress with 5 main program sections (Soft 
 - Build 4 new Astro components (Flowbite vanilla, zero JS): ProgramHero, ProgramPhase, ProgramComponent, ProgramCTA
 - Build 2 navigation components: ProgramsDropdown, LanguageSwitcher (Flowbite data-attributes, inline SVG icons)
 - Convert stateful React islands to Qwik (Announcement, SearchModal, Tabs, Accordion) and remove React entirely
-- Remove Disqus (`disqus-react`) — comments out of scope for headless TinaCMS
+- Remove Disqus (`disqus-react`) — replaced by Giscus on GitHub Discussions (repo `cihubs/content`, public)
 - Create blog listing page at `src/pages/noticias/index.astro`
 - Migrate all program content from cihubs.com to TinaCMS markdown files
 - Consume @cihubs/design-system as workspace dependency (Poppins/Montserrat/Work Sans/Open Sans fonts, #203370 blue palette)

@@ -106,7 +106,7 @@ Current CIHUBS website runs on WordPress with 5 main program sections and 2 subp
 3. Wire @cihubs/design-system as workspace dependency; drop hardcoded font families
 4. Build Astro components (ProgramHero, ProgramPhase, ProgramComponent, ProgramCTA)
 5. Build navigation components (ProgramsDropdown, LanguageSwitcher)
-6. Convert React islands to Qwik; remove React, disqus-react, react-icons; remove Disqus widget
+6. Convert React islands to Qwik; remove React, disqus-react, react-icons; replace Disqus widget with Giscus
 7. Extract Puppeteer LinkedIn scraper to market-insights repo
 8. Create Astro routes for 7 program pages
 9. Create blog listing page at `src/pages/noticias/index.astro`

@@ -25,7 +25,7 @@
 - [ ] 4.1 Add `@qwikdev/astro` + `flowbite-qwik` integrations and remove `@astrojs/react` from `astro.config.mjs`
 - [ ] 4.2 Convert Announcement, SearchModal (+SearchResult), Tabs/Tab, Accordion to Qwik islands
 - [ ] 4.3 Convert Video, Youtube, Button, Notice shortcodes to pure `.astro`; rewrite `useTheme` hook and `DynamicIcon` without React
-- [ ] 4.4 Replace all `react-icons` usage with inline SVG; remove Disqus widget and `disqus-react`
+- [ ] 4.4 Replace all `react-icons` usage with inline SVG; replace Disqus widget with Giscus (GitHub Discussions backend, `.astro` component, pathname mapping, repo `cihubs/content`)
 - [ ] 4.5 Uninstall `react`, `react-dom`, `@astrojs/react`, `disqus-react`, `react-icons` and verify no React imports remain
 
 ## 5. Astro Routes

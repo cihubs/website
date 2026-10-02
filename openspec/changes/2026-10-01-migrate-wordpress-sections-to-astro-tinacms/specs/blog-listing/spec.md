@@ -38,3 +38,11 @@ The system SHALL apply CIHUBS design system tokens to the blog listing page.
 - **THEN** the page uses the CIHUBS blue palette (#203370) for accents
 - **AND** the page uses Montserrat 400 for body text
 - **AND** the page uses Poppins 700 for section titles
+
+### Requirement: Blog posts support Giscus comments
+The system SHALL render Giscus comments (GitHub Discussions backend, repo cihubs/content) on blog post pages instead of Disqus.
+
+#### Scenario: Reader comments on a post
+- **WHEN** a user scrolls to the comments section of a blog post
+- **THEN** the Giscus widget loads mapped by page pathname
+- **AND** no React or Disqus code ships on the page
